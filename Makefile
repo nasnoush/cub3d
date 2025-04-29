@@ -6,43 +6,60 @@
 #    By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/28 13:48:13 by nadahman          #+#    #+#              #
-#    Updated: 2025/04/28 13:50:38 by nadahman         ###   ########.fr        #
+#    Updated: 2025/04/29 16:02:51 by nadahman         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = cub3d
-CC      = gcc
+CC = gcc
+CFLAGS = -Wall -Wextra -Werror -g3
+
 MLX_DIR = ./mlx_linux
 MLX_FLAGS = -L$(MLX_DIR) -lmlx_Linux -L/usr/lib -lXext -lX11 -lm -lz
-INCLUDES = -I./GNL -I$(MLX_DIR)
 
-SRCS    = main.c \
+INCLUDES = -I./includes -I$(MLX_DIR) -I./libft -I./get_next_line
 
-OBJ     = $(SRCS:.c=.o)
+SRCS_DIR = src
+PARSING_DIR = parsing
+RENDER_DIR = render
+UTILS_DIR = utils
+GNL_DIR = get_next_line
+
+SRCS = $(SRCS_DIR)/main.c \
+       $(wildcard $(SRCS_DIR)/$(PARSING_DIR)/*.c) \
+	   $(wildcard $(GNL_DIR)/*.c) \
+    #    $(wildcard $(SRCS_DIR)/$(RENDER_DIR)/*.c) \
+    #    $(wildcard $(SRCS_DIR)/$(UTILS_DIR)/*.c)
+
+OBJ = $(SRCS:.c=.o)
+
+LIBFT_DIR = libft
+LIBFT_OBJ = $(LIBFT_DIR)/libft.a
 
 all: $(NAME)
 
 $(MLX_DIR)/libmlx_Linux.a:
 	make -C $(MLX_DIR)
 
-$(NAME): $(OBJ) $(MLX_DIR)/libmlx_Linux.a
-	$(CC) $(OBJ) $(MLX_FLAGS) -o $(NAME)
+$(LIBFT_OBJ):
+	make -C $(LIBFT_DIR)
+
+$(NAME): $(OBJ) $(LIBFT_OBJ) $(MLX_DIR)/libmlx_Linux.a
+	$(CC) $(OBJ) $(LIBFT_OBJ) $(MLX_FLAGS) -o $(NAME)
 
 %.o: %.c
 	$(CC) $(CFLAGS) $(INCLUDES) -O3 -c $< -o $@
 
 clean:
 	rm -f $(OBJ)
+	make clean -C $(LIBFT_DIR)
 	make clean -C $(MLX_DIR)
 
 fclean: clean
 	rm -f $(NAME)
-	make clean -C $(MLX_DIR)
+	make fclean -C $(LIBFT_DIR)
+	rm -f $(MLX_DIR)/libmlx_Linux.a
 
 re: fclean all
-
-leaks: $(NAME)
-	@echo "Test de fuites.."
-	@valgrind --leak-check=full ./$<
 
 .PHONY: all clean fclean re leaks
