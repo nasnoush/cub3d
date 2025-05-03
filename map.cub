@@ -11,17 +11,22 @@ cava
 9
 1
 0
-
+NO ./path_to_north_texture
 salut cava
 cava
 1
 2
+F 220,100,0
 3
 4
 5
+EA ./path_to_the_east_texture
 6
 7
 8
+C 225,30,0
+SO ./path_to_the_south_texture
 9
 1
+WE ./path_to_the_west_texture
 0

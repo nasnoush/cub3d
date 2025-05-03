@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nas <nas@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 13:47:20 by nadahman          #+#    #+#             */
-/*   Updated: 2025/04/29 15:51:40 by nadahman         ###   ########.fr       */
+/*   Updated: 2025/05/02 11:52:45 by nas              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,14 +44,23 @@ int main(int ac, char **av)
 	ft_memset(game, 0, sizeof(t_game));
 	
 	game->map = load_map(av[1]);
-	load_map(av[1]);
+	// load_map(av[1]);
+	sort_pars(game);
 	
-	int i = 0;
-	while (game->map[i])
-	{
-		printf("%s", game->map[i]);
-		i++;
-	}
+	printf("NO texture : %s\n", game->text_no);
+	printf("SO texture : %s\n", game->text_so);
+	printf("WE texture : %s\n", game->text_we);
+	printf("EA texture : %s\n", game->text_ea);
+	printf("F, Couleur sol : %d\n", game->color_floor);
+	printf("C, Couleur plafond : %d\n", game->color_ceiling);
+
+
+	// int i = 0;
+	// while (game->map[i])
+	// {
+	// 	printf("%s", game->map[i]);
+	// 	i++;
+	// }
 	return (0);
 }
 
