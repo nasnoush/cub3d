@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yann <yann@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: yaoberso <yaoberso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 10:02:42 by nadahman          #+#    #+#             */
-/*   Updated: 2025/05/05 08:54:51 by yann             ###   ########.fr       */
+/*   Updated: 2025/05/05 10:47:37 by yaoberso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,13 @@
 #include <stdlib.h>
 #include <fcntl.h>
 #include <string.h>
+#include <math.h>
 
 typedef struct s_game
 {
-	void	*mlx;
+	t_mlx   mlx;
+    t_img   img;
+    t_player    player;
 	char **map;
 }t_game ;
 
@@ -56,6 +59,16 @@ typedef struct s_img
     int     line_length;
     int     endian;
 }   t_img;
+
+typedef struct s_tiles
+{
+	void		*tex_nord;
+	void		*tex_nord;
+	void		*tex_nord;
+	void		*tex_nord;
+	void        *plafon;
+    void        *sol;
+}				t_tiles;
 
 char **load_map(char *file_name);
 void    init_mlx(t_mlx *mlx, t_img *img);
