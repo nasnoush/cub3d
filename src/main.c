@@ -6,7 +6,7 @@
 /*   By: nas <nas@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 13:47:20 by nadahman          #+#    #+#             */
-/*   Updated: 2025/05/02 11:52:45 by nas              ###   ########.fr       */
+/*   Updated: 2025/05/05 14:07:09 by nas              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,8 @@ int main(int ac, char **av)
 	printf("SO texture : %s\n", game->text_so);
 	printf("WE texture : %s\n", game->text_we);
 	printf("EA texture : %s\n", game->text_ea);
-	printf("F, Couleur sol : %d\n", game->color_floor);
-	printf("C, Couleur plafond : %d\n", game->color_ceiling);
+	// printf("F, Couleur sol : %d\n", game->color_floor);
+	// printf("C, Couleur plafond : %d\n", game->color_ceiling);
 
 
 	// int i = 0;

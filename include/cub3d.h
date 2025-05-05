@@ -6,7 +6,7 @@
 /*   By: nas <nas@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 10:02:42 by nadahman          #+#    #+#             */
-/*   Updated: 2025/05/02 11:01:38 by nas              ###   ########.fr       */
+/*   Updated: 2025/05/05 14:06:09 by nas              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,17 @@
 #include <fcntl.h>
 #include <string.h>
 
+typedef	struct s_color
+{
+	int color_floor_r;
+	int color_floor_g;
+	int color_floor_b;
+	int color_ceiling_r;
+	int color_ceiling_g;
+	int color_ceiling_b;
+	
+} t_color;
+
 typedef struct s_game
 {
 	void	*mlx;
@@ -33,10 +44,47 @@ typedef struct s_game
 	char *text_we;
 	char *text_ea;
 
-	int color_floor;
-	int color_ceiling;
+	t_color	color;
 	
 }t_game ;
+
+typedef struct s_mlx
+{
+    void    *mlx_ptr;
+    void    *win_ptr;
+}   t_mlx;
+
+
+typedef struct s_player
+{
+    double  x;
+    double  y;
+    double  dir_x;
+    double  dir_y;
+    double  plane_x;
+    double  plane_y;
+}   t_player;
+
+typedef struct s_img
+{
+    void    *img_ptr;
+    char    *img_data;
+    int     width;
+    int     height;
+    int     bpp;
+    int     line_length;
+    int     endian;
+}   t_img;
+
+typedef struct s_tiles
+{
+	void		*north;
+	void		*south;
+	void		*west;
+	void		*east;
+	void        *ceiling;
+    void        *floor;
+}				t_tiles;
 
 char **load_map(char *file_name);
 void	sort_pars(t_game *game);

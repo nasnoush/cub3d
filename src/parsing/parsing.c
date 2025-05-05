@@ -6,7 +6,7 @@
 /*   By: nas <nas@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 14:12:54 by nadahman          #+#    #+#             */
-/*   Updated: 2025/05/03 10:03:36 by nas              ###   ########.fr       */
+/*   Updated: 2025/05/05 14:07:49 by nas              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,37 +42,6 @@ char **load_map(char *file_name)
 	close(fd);
 	return (map);
 }
-
-
-// void	sort_pars(t_game *game)
-// {
-// 	int i = 0;
-// 	int j;
-// 	int start = 0;
-// 	int end = 0;
-	
-// 	while (game->map[i])
-// 	{
-// 		j = 0;
-// 		while (game->map[i][j])
-// 		{
-// 			if (game->map[i][j] == 'N' && game->map[i][j + 1] == 'O')
-// 			{
-// 				j = j + 2;
-// 				while (game->map[i][j] == ' ' || game->map[i][j] == '\t')
-// 					j++;
-// 				start = j;
-// 				while (game->map[i][j] != ' ' && game->map[i][j] != '\t' && game->map[i][j] != '\n')
-// 					j++;
-// 				end = j;
-// 				game->text_no = ft_substr(game->map[i], start, end - start);
-// 			}
-// 			j++;
-// 		}
-// 		i++;
-// 	}
-// }
-
 
 static	void extract_texture(char *line, char **texture, char *name)
 {
@@ -119,8 +88,8 @@ void	sort_pars(t_game *game)
 		extract_texture(game->map[i], &game->text_so, "SO");
 		extract_texture(game->map[i], &game->text_we, "WE");
 		extract_texture(game->map[i], &game->text_ea, "EA");
-		extract_color(game->map[i], &game->color_floor, "F");
-		extract_color(game->map[i], &game->color_ceiling, "C");
+		// extract_color(game->map[i], &game->color_floor, "F");
+		// extract_color(game->map[i], &game->color_ceiling, "C");
 		
 		i++;
 	}
