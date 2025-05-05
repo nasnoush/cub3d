@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yann <yann@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 10:02:42 by nadahman          #+#    #+#             */
-/*   Updated: 2025/04/29 15:59:34 by nadahman         ###   ########.fr       */
+/*   Updated: 2025/05/05 08:54:51 by yann             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,35 @@ typedef struct s_game
 	char **map;
 }t_game ;
 
+typedef struct s_mlx
+{
+    void    *mlx_ptr;
+    void    *win_ptr;
+}   t_mlx;
+
+
+typedef struct s_player
+{
+    double  x;
+    double  y;
+    double  dir_x;
+    double  dir_y;
+    double  plane_x;
+    double  plane_y;
+}   t_player;
+
+typedef struct s_img
+{
+    void    *img_ptr;
+    char    *img_data;
+    int     width;
+    int     height;
+    int     bpp;
+    int     line_length;
+    int     endian;
+}   t_img;
+
 char **load_map(char *file_name);
+void    init_mlx(t_mlx *mlx, t_img *img);
 
 #endif
