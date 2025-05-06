@@ -6,7 +6,7 @@
 /*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 14:12:54 by nadahman          #+#    #+#             */
-/*   Updated: 2025/05/06 12:11:35 by nadahman         ###   ########.fr       */
+/*   Updated: 2025/05/06 14:02:22 by nadahman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,8 +93,11 @@ void	extract_map(t_game *game)
 	size_map = 0;
 	while (game->file_content[i])
 	{
-		if (ft_strchr(game->file_content[i], '1'))
+		if (game->file_content[i][0] == '1' && game->file_content[i][0])
 		{	
+			while (game->file_content[i][0] != '\n')
+				i--;
+			i = i + 1;
 			start = i;
 			start2 = i;
 			break ;	
@@ -120,9 +123,6 @@ void	extract_map(t_game *game)
 	game->map = map;
 }
 
-
-
-
 void	sort_pars(t_game *game)
 {
 	int i;
@@ -138,9 +138,9 @@ void	sort_pars(t_game *game)
 		extract_texture(game->file_content[i], &game->text_ea, "EA");
 		extract_color(game->file_content[i], &game->color.color_floor_r, &game->color.color_floor_g, &game->color.color_floor_b , "F");
 		extract_color(game->file_content[i], &game->color.color_ceiling_r, &game->color.color_ceiling_g, &game->color.color_ceiling_b , "C");
-		extract_map(game);
 		i++;
 	}
+	extract_map(game);
 }
 
 
