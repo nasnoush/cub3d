@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nas <nas@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 10:02:42 by nadahman          #+#    #+#             */
-/*   Updated: 2025/05/05 14:06:09 by nas              ###   ########.fr       */
+/*   Updated: 2025/05/06 10:50:55 by nadahman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ typedef	struct s_color
 	int color_floor_r;
 	int color_floor_g;
 	int color_floor_b;
-	int color_ceiling_r;
+	int color_ceiling_r; 
 	int color_ceiling_g;
 	int color_ceiling_b;
 	
@@ -37,8 +37,9 @@ typedef	struct s_color
 typedef struct s_game
 {
 	void	*mlx;
-	char **map;
+	char **file_content;
 	
+	char **map;
 	char *text_no;
 	char *text_so;
 	char *text_we;
@@ -86,7 +87,7 @@ typedef struct s_tiles
     void        *floor;
 }				t_tiles;
 
-char **load_map(char *file_name);
+char **load_file(char *file_name);
 void	sort_pars(t_game *game);
 
 #endif

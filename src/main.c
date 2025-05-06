@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nas <nas@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 13:47:20 by nadahman          #+#    #+#             */
-/*   Updated: 2025/05/05 14:07:09 by nas              ###   ########.fr       */
+/*   Updated: 2025/05/06 12:11:50 by nadahman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int main(int ac, char **av)
 		return (1);
 	ft_memset(game, 0, sizeof(t_game));
 	
-	game->map = load_map(av[1]);
+	game->file_content = load_file(av[1]);
 	// load_map(av[1]);
 	sort_pars(game);
 	
@@ -51,16 +51,20 @@ int main(int ac, char **av)
 	printf("SO texture : %s\n", game->text_so);
 	printf("WE texture : %s\n", game->text_we);
 	printf("EA texture : %s\n", game->text_ea);
-	// printf("F, Couleur sol : %d\n", game->color_floor);
-	// printf("C, Couleur plafond : %d\n", game->color_ceiling);
+	printf("F, Couleur sol : r = %d g = %d b = %d\n", game->color.color_floor_r, game->color.color_floor_g, game->color.color_floor_b);
+	printf("C, Couleur plafond : r = %d g = %d b = %d\n", game->color.color_ceiling_r, game->color.color_ceiling_g, game->color.color_ceiling_b);
+
+	int i = 0;
+	while (game->map[i])
+	{
+		printf("%s", game->map[i]);
+		i++;
+	}
+	
 
 
-	// int i = 0;
-	// while (game->map[i])
-	// {
-	// 	printf("%s", game->map[i]);
-	// 	i++;
-	// }
+	
+	// pas oublier d initialiser la structure color
 	return (0);
 }
 

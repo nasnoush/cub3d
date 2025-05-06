@@ -3,47 +3,44 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nas <nas@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 14:12:54 by nadahman          #+#    #+#             */
-/*   Updated: 2025/05/05 14:07:49 by nas              ###   ########.fr       */
+/*   Updated: 2025/05/06 12:11:35 by nadahman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-char **load_map(char *file_name)
+char **load_file(char *file_name)
 {
 	int fd;
-	char **map;
+	char **file;
 	char *line;
-	// int size_line;
-	// char *tmp;
 	int row;
 	
-	// size_line = MAX_LINE;
 	fd = open(file_name, O_RDONLY);
 	if (fd < 0)
 		return (NULL);
-	map = malloc(sizeof(char *) * MAX_LINE);  // ici mettre de quoi allouer la map
-	if (map == NULL)
+	file = malloc(sizeof(char *) * MAX_LINE);
+	if (file == NULL)
 		return (NULL);
 	row = 0;
 	while ((line = get_next_line(fd)) != NULL)
 	{
 		
-		map[row] = ft_strdup(line);
+		file[row] = ft_strdup(line);
 		if (row >= MAX_LINE)
 			break ;
 		free(line);
 		row++;
 	}
-	map[row] = NULL;
+	file[row] = NULL;
 	close(fd);
-	return (map);
+	return (file);
 }
 
-static	void extract_texture(char *line, char **texture, char *name)
+void extract_texture(char *line, char **texture, char *name)
 {
 	int i;
 	
@@ -56,22 +53,73 @@ static	void extract_texture(char *line, char **texture, char *name)
 	}
 }
 
-static	void extract_color(char *line, int *value, char *name)
+
+void	extract_color(char *line, int *r, int *g, int *b, char *name)
+{
+	int	i;
+
+	if (ft_strncmp(line, name, ft_strlen(name)) != 0)
+		return ;
+	i = ft_strlen(name);
+	while (line[i] == ' ' || line[i] == '\t')
+		i++;
+	*r = ft_atoi(&line[i]);
+	while (line[i] >= '0' && line[i] <= '9')
+		i++;
+	if (line[i] != ',')
+		return ;
+	i++;
+	*g = ft_atoi(&line[i]);
+	while (line[i] >= '0' && line[i] <= '9')
+		i++;
+	if (line[i] != ',')
+		return ;
+	i++;
+	*b = ft_atoi(&line[i]);
+}
+
+
+void	extract_map(t_game *game)
 {
 	int i;
-	
-	if (*value != 0)
-		return ;
-	if (ft_strncmp(line, name, ft_strlen(name)) == 0)
-	{
-		i = ft_strlen(name);
-		while (line[i] == ' ' || line[i] == '\t')
-			i++;
-		*value = ft_atoi(&line[i]);
+	int size_map;
+	int start;
+	int start2;
+	char **map;
 
-		// la faut je rajoute pour stocker chaque couleur dans un int different
+	i = 0;
+	start = 0;
+	start2 = 0;
+	size_map = 0;
+	while (game->file_content[i])
+	{
+		if (ft_strchr(game->file_content[i], '1'))
+		{	
+			start = i;
+			start2 = i;
+			break ;	
+		}
+		i++;
 	}
+	while (game->file_content[start])
+	{
+		start++;
+		size_map++;
+	}	
+	map = malloc(sizeof(char *) * (size_map + 1));
+	if (map == NULL)
+		return ;
+	i = 0;
+	while (game->file_content[start2])
+	{
+		map[i] = ft_strdup(game->file_content[start2]);
+		i++;
+		start2++;
+	}
+	map[i] = NULL;
+	game->map = map;
 }
+
 
 
 
@@ -81,16 +129,16 @@ void	sort_pars(t_game *game)
 
 	i = 0;
 
-	while (game->map[i])
+	while (game->file_content[i])
 	{
 		
-		extract_texture(game->map[i], &game->text_no, "NO");
-		extract_texture(game->map[i], &game->text_so, "SO");
-		extract_texture(game->map[i], &game->text_we, "WE");
-		extract_texture(game->map[i], &game->text_ea, "EA");
-		// extract_color(game->map[i], &game->color_floor, "F");
-		// extract_color(game->map[i], &game->color_ceiling, "C");
-		
+		extract_texture(game->file_content[i], &game->text_no, "NO");
+		extract_texture(game->file_content[i], &game->text_so, "SO");
+		extract_texture(game->file_content[i], &game->text_we, "WE");
+		extract_texture(game->file_content[i], &game->text_ea, "EA");
+		extract_color(game->file_content[i], &game->color.color_floor_r, &game->color.color_floor_g, &game->color.color_floor_b , "F");
+		extract_color(game->file_content[i], &game->color.color_ceiling_r, &game->color.color_ceiling_g, &game->color.color_ceiling_b , "C");
+		extract_map(game);
 		i++;
 	}
 }
