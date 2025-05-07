@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nas <nas@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 11:14:29 by yann              #+#    #+#             */
-/*   Updated: 2025/04/29 15:39:44 by nadahman         ###   ########.fr       */
+/*   Updated: 2025/05/07 19:23:39 by nas              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # endif
 
 char	*get_next_line(int fd);
+int	found_line(char *str);
 // int		ft_strlen(const char *s);
 // char	*ft_strchr(const char *s, int c);
 // char	*ft_strjoin(char *s1, const char *s2);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nas <nas@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 10:02:42 by nadahman          #+#    #+#             */
-/*   Updated: 2025/05/07 13:50:33 by nadahman         ###   ########.fr       */
+/*   Updated: 2025/05/07 19:14:11 by nas              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,11 @@ typedef struct s_tiles
     void        *floor;
 }				t_tiles;
 
+
+// init
+
+void	init_struct_color(t_game *game);
+
 // parsing
 
 char **load_file(char *file_name);
@@ -97,6 +102,7 @@ void	extract_map(t_game *game);
 int check_all_condition(t_game *game);
 int check_is_valid(t_game *game);
 int check_if_double(t_game *game);
+int check_wall(t_game *game);
 
 
 // free 

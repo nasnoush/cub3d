@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nas <nas@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 09:57:02 by nadahman          #+#    #+#             */
-/*   Updated: 2025/05/07 14:15:04 by nadahman         ###   ########.fr       */
+/*   Updated: 2025/05/07 19:38:51 by nas              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,75 @@
 
 int check_all_condition(t_game *game)
 {
+	if (check_wall(game) == 0)
+		return (0);
+	
 	if (check_is_valid(game) == 0)
 		return (0);
 		
 	if (check_if_double(game) == 0)
 		return (0);
-
-	// check si la map est bien entouree de mur
 	
 	// check si la map est bien a la fin du fichier 
 	
+	return (1);
+}
+
+int first_and_last_line(char *line)
+{
+	int	i = 0;
+
+	while (line[i])
+	{
+		if (line[i] != '1' && line[i] != ' ')
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
+int check_wall(t_game *game)
+{
+	int i;
+	int j;
+	char **map;
+	
+	map = game->map;
+	if (!map || !map[0])
+		return (0);	
+	if (!first_and_last_line(map[0]))
+	{	
+		printf("Error : La map n'est pas entouré de mur\n");
+		return (0);
+	}
+	i = 1;
+	while (map[i + 1])
+	{
+		j = 0;
+		while (map[i][j] == ' ')
+			j++;
+		if (map[i][j] != '1')
+		{	
+			printf("Error : La map n'est pas entouré de mur\n");
+			return (0);
+		}
+		while (map[i][j])
+			j++;
+		j--;
+		while (j > 0 && map[i][j] == ' ')
+			j--;
+		if (map[i][j] != '1')
+		{	
+			printf("Error : La map n'est pas entouré de mur\n");
+			return (0);
+		}
+		i++;
+	}
+	if (!first_and_last_line(map[i]))
+	{	
+		printf("Error : La map n'est pas entouré de mur\n");
+		return (0);
+	}
 	return (1);
 }
 

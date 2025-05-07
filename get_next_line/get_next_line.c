@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yann <yann@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: nas <nas@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 11:14:23 by yann              #+#    #+#             */
-/*   Updated: 2024/11/03 15:07:09 by yann             ###   ########.fr       */
+/*   Updated: 2025/05/07 19:25:43 by nas              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,16 +108,16 @@ char	*get_next_line(int fd)
 	return (output_text);
 }
 
-/*#include <stdio.h>
-#include <fcntl.h>
-int main()
-{
-    int fd;
+// /*#include <stdio.h>
+// #include <fcntl.h>
+// int main()
+// {
+//     int fd;
 
-    fd = open("test.txt", O_RDONLY);
-    printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
-}
-*/
+//     fd = open("test.txt", O_RDONLY);
+//     printf("%s", get_next_line(fd));
+// 	printf("%s", get_next_line(fd));
+// 	printf("%s", get_next_line(fd));
+// 	printf("%s", get_next_line(fd));
+// }
+// */

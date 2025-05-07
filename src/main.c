@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nas <nas@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 13:47:20 by nadahman          #+#    #+#             */
-/*   Updated: 2025/05/07 14:11:58 by nadahman         ###   ########.fr       */
+/*   Updated: 2025/05/07 19:25:30 by nas              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int main(int ac, char **av)
 	if (game == NULL)
 		return (1);
 	ft_memset(game, 0, sizeof(t_game));
-	
+	init_struct_color(game);
 	game->file_content = load_file(av[1]);
 	sort_pars(game);
 	if (check_all_condition(game) == 0)
