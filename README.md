@@ -5,6 +5,5 @@
 
 parsing :
 
-- recuperer toutes les infos du .cub
 
-- trier ce que j obtiens et les mettres ou il faut (map dans map etc..)
+- faire en sorte que la map doit etre apres les autres infos 

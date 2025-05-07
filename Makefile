@@ -6,7 +6,7 @@
 #    By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/28 13:48:13 by nadahman          #+#    #+#              #
-#    Updated: 2025/04/29 16:02:51 by nadahman         ###   ########.fr        #
+#    Updated: 2025/05/07 13:24:44 by nadahman         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,8 +28,8 @@ GNL_DIR = get_next_line
 SRCS = $(SRCS_DIR)/main.c \
        $(wildcard $(SRCS_DIR)/$(PARSING_DIR)/*.c) \
 	   $(wildcard $(GNL_DIR)/*.c) \
+       $(wildcard $(SRCS_DIR)/$(UTILS_DIR)/*.c)
     #    $(wildcard $(SRCS_DIR)/$(RENDER_DIR)/*.c) \
-    #    $(wildcard $(SRCS_DIR)/$(UTILS_DIR)/*.c)
 
 OBJ = $(SRCS:.c=.o)
 

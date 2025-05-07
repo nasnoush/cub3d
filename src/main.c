@@ -6,7 +6,7 @@
 /*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 13:47:20 by nadahman          #+#    #+#             */
-/*   Updated: 2025/05/06 14:00:46 by nadahman         ###   ########.fr       */
+/*   Updated: 2025/05/07 14:11:58 by nadahman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,14 @@ int main(int ac, char **av)
 	ft_memset(game, 0, sizeof(t_game));
 	
 	game->file_content = load_file(av[1]);
-	// load_map(av[1]);
 	sort_pars(game);
+	if (check_all_condition(game) == 0)
+	{
+		free_all(game);
+		exit(1);
+	}
+	
+	
 	
 	printf("NO texture : %s\n", game->text_no);
 	printf("SO texture : %s\n", game->text_so);
@@ -57,7 +63,7 @@ int main(int ac, char **av)
 	int i = 0;
 	while (game->map[i])
 	{
-		printf("%s", game->map[i]);
+		printf("%s\n", game->map[i]);
 		i++;
 	}
 	
@@ -65,6 +71,8 @@ int main(int ac, char **av)
 
 	
 	// pas oublier d initialiser la structure color
+	
+	free_all(game);
 	return (0);
 }
 

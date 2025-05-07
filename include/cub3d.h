@@ -6,7 +6,7 @@
 /*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 10:02:42 by nadahman          #+#    #+#             */
-/*   Updated: 2025/05/06 10:50:55 by nadahman         ###   ########.fr       */
+/*   Updated: 2025/05/07 13:50:33 by nadahman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,21 @@ typedef struct s_tiles
     void        *floor;
 }				t_tiles;
 
+// parsing
+
 char **load_file(char *file_name);
 void	sort_pars(t_game *game);
+void extract_texture(char *line, char **texture, char *name);
+void	extract_color(char *line, int *r, int *g, int *b, char *name);
+void	extract_map(t_game *game);
+int check_all_condition(t_game *game);
+int check_is_valid(t_game *game);
+int check_if_double(t_game *game);
+
+
+// free 
+void	free_map(t_game *game);
+void	free_file_content(t_game *game);
+void	free_all(t_game *game);
 
 #endif
