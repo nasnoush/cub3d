@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yaoberso <yaoberso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yann <yann@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 19:09:24 by nas               #+#    #+#             */
-/*   Updated: 2025/05/08 11:59:56 by yaoberso         ###   ########.fr       */
+/*   Updated: 2025/05/08 13:19:22 by yann             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void init_player(t_game *game)
 	{
 		while(map[x][y] != '\0')
 		{
-			if (map[x][y] == 'N' || map[x][y] == 'S' || map[x][y] == 'E' || map[x][y] == 'O')
+			if (map[x][y] == 'N' || map[x][y] == 'S' || map[x][y] == 'E' || map[x][y] == 'W')
 			{
 				game->player.x = x + 0.5;
 				game->player.y = y + 0.5;
@@ -68,28 +68,28 @@ void init_player(t_game *game)
 					game->player.dir_x = 0;
 					game->player.dir_y = -1;
 					game->player.plane_x = 0.66;
-					game->player.plane_x = 0;
+					game->player.plane_y = 0;
 				}
 				if (map[x][y] == 'S')
 				{
 					game->player.dir_x = 0;
 					game->player.dir_y = 1;
 					game->player.plane_x = -0.66;
-					game->player.plane_x = 0;
+					game->player.plane_y = 0;
 				}
 				if (map[x][y] == 'E')
 				{
 					game->player.dir_x = 1;
 					game->player.dir_y = 0;
 					game->player.plane_x = 0;
-					game->player.plane_x = 0.66;
+					game->player.plane_y = 0.66;
 				}
-				if (map[x][y] == 'O')
+				if (map[x][y] == 'W')
 				{
 					game->player.dir_x = -1;
 					game->player.dir_y = 0;
 					game->player.plane_x = 0;
-					game->player.plane_x = -0.66;
+					game->player.plane_y = -0.66;
 				}
 			}
 			y++;
