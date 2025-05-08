@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nas <nas@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: yaoberso <yaoberso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 19:09:24 by nas               #+#    #+#             */
-/*   Updated: 2025/05/07 19:13:56 by nas              ###   ########.fr       */
+/*   Updated: 2025/05/08 11:59:56 by yaoberso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,4 +20,80 @@ void	init_struct_color(t_game *game)
 	game->color.color_ceiling_r = -1;
 	game->color.color_ceiling_g = -1;
 	game->color.color_ceiling_b = -1;
+}
+
+#include "cub3d.h"
+
+void    init_mlx(t_game *game)
+{
+    game->mlx.mlx_ptr = mlx_init();
+    if (!game->mlx.mlx_ptr)
+        return ;
+
+    game->mlx.win_ptr = mlx_new_window(game->mlx.mlx_ptr, game->img.width, game->img.height, "cub3D");
+    if (!game->mlx.win_ptr)
+        return ;
+
+    game->img.img_ptr = mlx_new_image(game->mlx.mlx_ptr, game->img.width, game->img.height);
+    if (!game->img.img_ptr)
+        return ;
+
+    game->img.img_data = mlx_get_data_addr(
+        game->img.img_ptr,
+        game->img.bpp,
+        game->img.line_length,
+        game->img.endian
+    );
+}
+
+void init_player(t_game *game)
+{
+	char **map;
+	int		y;
+	int		x;
+
+	x = 0;
+	y = 0;
+	map = game->map;
+	while(map[x] != '\0')
+	{
+		while(map[x][y] != '\0')
+		{
+			if (map[x][y] == 'N' || map[x][y] == 'S' || map[x][y] == 'E' || map[x][y] == 'O')
+			{
+				game->player.x = x + 0.5;
+				game->player.y = y + 0.5;
+				if (map[x][y] == 'N')
+				{
+					game->player.dir_x = 0;
+					game->player.dir_y = -1;
+					game->player.plane_x = 0.66;
+					game->player.plane_x = 0;
+				}
+				if (map[x][y] == 'S')
+				{
+					game->player.dir_x = 0;
+					game->player.dir_y = 1;
+					game->player.plane_x = -0.66;
+					game->player.plane_x = 0;
+				}
+				if (map[x][y] == 'E')
+				{
+					game->player.dir_x = 1;
+					game->player.dir_y = 0;
+					game->player.plane_x = 0;
+					game->player.plane_x = 0.66;
+				}
+				if (map[x][y] == 'O')
+				{
+					game->player.dir_x = -1;
+					game->player.dir_y = 0;
+					game->player.plane_x = 0;
+					game->player.plane_x = -0.66;
+				}
+			}
+			y++;
+		}
+		x++;
+	}
 }

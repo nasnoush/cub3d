@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nas <nas@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: yaoberso <yaoberso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 10:02:42 by nadahman          #+#    #+#             */
-/*   Updated: 2025/05/07 19:14:11 by nas              ###   ########.fr       */
+/*   Updated: 2025/05/08 10:41:39 by yaoberso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ typedef	struct s_color
 
 typedef struct s_game
 {
-	void	*mlx;
 	char **file_content;
 	
 	char **map;
@@ -46,6 +45,10 @@ typedef struct s_game
 	char *text_ea;
 
 	t_color	color;
+	t_mlx	mlx;
+	t_img	img;
+	t_player	player;
+	t_tiles		tiles;
 	
 }t_game ;
 
@@ -79,14 +82,13 @@ typedef struct s_img
 
 typedef struct s_tiles
 {
-	void		*north;
-	void		*south;
-	void		*west;
-	void		*east;
-	void        *ceiling;
-    void        *floor;
-}				t_tiles;
-
+	t_img north;
+	t_img south;
+	t_img west;
+	t_img east;
+	t_img ceiling;
+	t_img floor;
+} t_tiles;
 
 // init
 
@@ -109,5 +111,8 @@ int check_wall(t_game *game);
 void	free_map(t_game *game);
 void	free_file_content(t_game *game);
 void	free_all(t_game *game);
+
+// raycasting
+void raycasting(t_game *game);
 
 #endif
