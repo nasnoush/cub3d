@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yaoberso <yaoberso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yann <yann@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 13:47:20 by nadahman          #+#    #+#             */
-/*   Updated: 2025/05/08 10:28:25 by yaoberso         ###   ########.fr       */
+/*   Updated: 2025/05/08 14:59:44 by yann             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,8 @@ int main(int ac, char **av)
 		free_all(game);
 		exit(1);
 	}
-	init_mlx(&game->mlx, &game->img);
-	
-	
-	
+	init_mlx(game);
+	init_player(game);
 	printf("NO texture : %s\n", game->text_no);
 	printf("SO texture : %s\n", game->text_so);
 	printf("WE texture : %s\n", game->text_we);

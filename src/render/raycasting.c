@@ -1,15 +1,25 @@
 #include "../include/cub3d.h"
 
+void algo_dda(t_game *game)
+{
+
+}
+
+void draw_image(t_game *game)
+{
+	
+}
+
 void	raycasting(t_game *game)
 {
-	int mapX;
-	int mapY;
-	double rayPosX;
-	double rayPosY;
+	int		x;
 
-	rayPosX = game->player.x;
-	rayPosY = game->player.y;
-	mapX = (int)game->player.x;
-	mapY = (int)game->player.y;
-	
+	x = 0;
+	while(x < WIDTH)
+	{
+		init_raycasting(game, x);
+		algo_dda(game); //fonction a faire
+		draw_image(game); //fonction a faire
+		x++;
+	}
 }

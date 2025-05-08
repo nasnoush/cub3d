@@ -6,7 +6,7 @@
 /*   By: yann <yann@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 19:09:24 by nas               #+#    #+#             */
-/*   Updated: 2025/05/08 13:19:22 by yann             ###   ########.fr       */
+/*   Updated: 2025/05/08 15:06:51 by yann             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,4 +96,15 @@ void init_player(t_game *game)
 		}
 		x++;
 	}
+}
+
+void init_raycasting(t_game *game, int x)
+{
+    game->ray.camera_x = 2 * x / (double)WIDTH - 1;
+    game->ray.ray_dir_x = game->player.dir_x + game->player.plane_x * game->ray.camera_x;
+    game->ray.ray_dir_y = game->player.dir_y + game->player.plane_y * game->ray.camera_x;
+    game->ray.map_x = (int)game->player.x;
+    game->ray.map_y = (int)game->player.y;
+    game->ray.delta_dist_x = fabs(1 / game->ray.ray_dir_x);
+    game->ray.delta_dist_y = fabs(1 / game->ray.ray_dir_y);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yaoberso <yaoberso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yann <yann@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 10:02:42 by nadahman          #+#    #+#             */
-/*   Updated: 2025/05/08 10:41:39 by yaoberso         ###   ########.fr       */
+/*   Updated: 2025/05/08 14:58:26 by yann             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 #define CUB3D_H
 
 #define MAX_LINE 10000
+#define WIDTH 800
+#define HEIGHT 600
 
 #include "../libft/libft.h"
 #include "../get_next_line/get_next_line.h"
@@ -49,6 +51,7 @@ typedef struct s_game
 	t_img	img;
 	t_player	player;
 	t_tiles		tiles;
+	t_ray		ray;
 	
 }t_game ;
 
@@ -90,9 +93,30 @@ typedef struct s_tiles
 	t_img floor;
 } t_tiles;
 
+typedef struct s_ray
+{
+	double	camera_x;
+	double	ray_dir_x;
+	double	ray_dir_y;
+	int		map_x;
+	int		map_y;
+	double	side_dist_x;
+	double	side_dist_y;
+	double	delta_dist_x;
+	double	delta_dist_y;
+	double	perp_wall_dist;
+	int		step_x;
+	int		step_y;
+	int		hit;
+	int		side;
+}	t_ray;
+
+
 // init
 
 void	init_struct_color(t_game *game);
+void init_raycasting(t_game *game, int x);
+void init_player(t_game *game);
 
 // parsing
 
