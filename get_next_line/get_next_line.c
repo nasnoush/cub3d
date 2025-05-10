@@ -6,7 +6,7 @@
 /*   By: nas <nas@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 11:14:23 by yann              #+#    #+#             */
-/*   Updated: 2025/05/10 11:04:37 by nas              ###   ########.fr       */
+/*   Updated: 2025/05/10 11:49:01 by nas              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static char	*read_first_line(int fd, char *text)
 	int		bytes_read;
 
 	if (text == NULL)
-		text = ft_calloc(1, 1);
+		text = ftg_calloc(1, 1);
 	if (!text)
 		return (NULL);
 	buffer = malloc((BUFFER_SIZE + 1) * sizeof(char));
@@ -38,8 +38,8 @@ static char	*read_first_line(int fd, char *text)
 			return (NULL);
 		}
 		buffer[bytes_read] = '\0';
-		text = ft_strjoin(text, buffer);
-		if (ft_strchr(text, '\n') != NULL)
+		text = ftg_strjoin(text, buffer);
+		if (ftg_strchr(text, '\n') != NULL)
 			break ;
 	}
 	free(buffer);
@@ -56,7 +56,7 @@ static char	*get_line(char *text)
 		return (NULL);
 	while ((text[i] != '\0') && (text[i] != '\n'))
 		i++;
-	str = ft_calloc(i + 2, sizeof(char));
+	str = ftg_calloc(i + 2, sizeof(char));
 	if (str == NULL)
 		return (NULL);
 	i = 0;
@@ -85,7 +85,7 @@ static char	*clean_first_line(char *text)
 		return (NULL);
 	}
 	i++; // Saute le caractère '\n'
-	str = ft_calloc(ft_strlen(text) - i + 1, sizeof(char));
+	str = ftg_calloc(ft_strlen(text) - i + 1, sizeof(char));
 	if (str == NULL)
 	{
 		free(text);
