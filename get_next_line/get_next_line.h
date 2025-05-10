@@ -6,7 +6,7 @@
 /*   By: nas <nas@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 11:14:29 by yann              #+#    #+#             */
-/*   Updated: 2025/05/07 19:23:39 by nas              ###   ########.fr       */
+/*   Updated: 2025/05/10 10:58:51 by nas              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 
 char	*get_next_line(int fd);
 int	found_line(char *str);
+void	free_get_next_line(void);
 // int		ft_strlen(const char *s);
 // char	*ft_strchr(const char *s, int c);
 // char	*ft_strjoin(char *s1, const char *s2);

@@ -6,7 +6,7 @@
 /*   By: nas <nas@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 13:47:20 by nadahman          #+#    #+#             */
-/*   Updated: 2025/05/07 19:25:30 by nas              ###   ########.fr       */
+/*   Updated: 2025/05/10 11:44:38 by nas              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,18 +60,14 @@ int main(int ac, char **av)
 	printf("F, Couleur sol : r = %d g = %d b = %d\n", game->color.color_floor_r, game->color.color_floor_g, game->color.color_floor_b);
 	printf("C, Couleur plafond : r = %d g = %d b = %d\n", game->color.color_ceiling_r, game->color.color_ceiling_g, game->color.color_ceiling_b);
 
+	printf("-----------------\n");
+
 	int i = 0;
 	while (game->map[i])
 	{
 		printf("%s\n", game->map[i]);
 		i++;
 	}
-	
-
-
-	
-	// pas oublier d initialiser la structure color
-	
 	free_all(game);
 	return (0);
 }

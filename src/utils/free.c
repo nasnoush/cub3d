@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nas <nas@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 13:20:53 by nadahman          #+#    #+#             */
-/*   Updated: 2025/05/07 13:58:22 by nadahman         ###   ########.fr       */
+/*   Updated: 2025/05/10 10:43:32 by nas              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,15 +62,25 @@ void	free_file(char **file)
 
 void	free_texture(t_game *game)
 {
-	free(game->text_ea);
-	free(game->text_so);
-	free(game->text_we);
-	free(game->text_no);
+	if (game->text_ea)
+		free(game->text_ea);
+	if (game->text_so)
+		free(game->text_so);
+	if (game->text_we)
+		free(game->text_we);
+	if (game->text_no)
+		free(game->text_no);
+	game->text_ea = NULL;
+	game->text_so = NULL;
+	game->text_we = NULL;
+	game->text_no = NULL;
 }
 
 
 void	free_all(t_game *game)
 {
+	if (!game)
+		return;
 	free_map(game);
 	free_file_content(game);
 	free_texture(game);

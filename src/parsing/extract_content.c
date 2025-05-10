@@ -3,96 +3,108 @@
 /*                                                        :::      ::::::::   */
 /*   extract_content.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nas <nas@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 09:57:42 by nadahman          #+#    #+#             */
-/*   Updated: 2025/05/07 14:14:35 by nadahman         ###   ########.fr       */
+/*   Updated: 2025/05/10 11:29:48 by nas              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-void	extract_texture(char *line, char **texture, char *name)
+void	extract_texture(t_game *game, char *line, char **texture, char *name)
 {
 	int	i;
+	int len;
+	char *new_texture;
+	
+	i = 0;
+	while (line[i] == ' ' || line[i] == '\t')
+		i++;
+	if (ft_strncmp(&line[i], name, 2) != 0)
+		return ;
+	i = i + 2;
+	while (line[i] == ' ' || line[i] == '\t')
+		i++;
+	len = ft_strlen(&line[i]);
+	if (line[i + len - 1] == '\n')
+		len--;
+	new_texture = ft_substr(&line[i], 0, len);
 
-	if (ft_strncmp(line, name, 2) == 0)
+	if (new_texture == NULL || *new_texture == '\0')
 	{
-		i = 2;
-		while (line[i] == ' ' || line[i] == '\t')
-			i++;
-		*texture = ft_substr(line, i, ft_strlen(line) - i - 1);
+		printf("Error : Texture non valide !\n");
+		free_all(game);
+		free(new_texture);
+		exit(1);
+	}
+	if (*texture != NULL)
+		free(*texture);
+	*texture = new_texture;
+}
+
+int	recup_num(t_game *game, char *line, int *i)
+{
+	int	num = 0;
+
+	if (line[*i] < '0' || line[*i] > '9')
+	{
+		printf("Error : Format de couleur non valide !\n");
+		free_all(game);
+		exit(1);
+	}
+	while (line[*i] >= '0' && line[*i] <= '9')
+	{
+		num = num * 10 + (line[*i] - '0');
+		(*i)++;
+	}
+	if (num < 0 || num > 255)
+	{
+		printf("Error : Format de couleur non valide !\n");
+		free_all(game);
+		exit(1);
+	}
+	return (num);
+}
+
+void	extract_color(t_game *game, char *line, int *r, int *g, int *b, char *name)
+{
+	int	i = 0;
+
+	while (line[i] == ' ' || line[i] == '\t')
+		i++;
+	if (ft_strncmp(&line[i], name, ft_strlen(name)) != 0)
+		return ;
+	i += ft_strlen(name);
+	while (line[i] == ' ' || line[i] == '\t')
+		i++;
+	*r = recup_num(game, line, &i);
+	if (line[i++] != ',')
+	{
+		printf("Error : Format de couleur non valide !\n");
+		free_all(game);
+		exit(1);
+	}
+	*g = recup_num(game, line, &i);
+	if (line[i++] != ',')
+	{
+		printf("Error : Format de couleur non valide !\n");
+		free_all(game);
+		exit(1);
+	}
+	*b = recup_num(game, line, &i);
+	while (line[i])
+	{
+		if (line[i] != ' ' && line[i] != '\t' && line[i] != '\n')
+		{
+			printf("Error : Format de couleur non valide !\n");
+			free_all(game);
+			exit(1);
+		}
+		i++;
 	}
 }
 
-void	extract_color(char *line, int *r, int *g, int *b, char *name)
-{
-	int	i;
-
-	if (ft_strncmp(line, name, ft_strlen(name)) != 0)
-		return ;
-	i = ft_strlen(name);
-	while (line[i] == ' ' || line[i] == '\t')
-		i++;
-	*r = ft_atoi(&line[i]);
-	while (line[i] >= '0' && line[i] <= '9')
-		i++;
-	if (line[i] != ',')
-		return ;
-	i++;
-	*g = ft_atoi(&line[i]);
-	while (line[i] >= '0' && line[i] <= '9')
-		i++;
-	if (line[i] != ',')
-		return ;
-	i++;
-	*b = ft_atoi(&line[i]);
-}
-
-// void	extract_map(t_game *game)
-// {
-// 	int i;
-// 	int size_map;
-// 	int start;
-// 	int start2;
-// 	char **map;
-
-// 	i = 0;
-// 	start = 0;
-// 	start2 = 0;
-// 	size_map = 0;
-// 	while (game->file_content[i])
-// 	{
-// 		if (game->file_content[i][0] == '1' && game->file_content[i][0])
-// 		{
-// 			while (game->file_content[i][0] != '\n')
-// 				i--;
-// 			i = i + 1;
-// 			start = i;
-// 			start2 = i;
-// 			break ;
-// 		}
-// 		i++;
-// 	}
-// 	while (game->file_content[start])
-// 	{
-// 		start++;
-// 		size_map++;
-// 	}
-// 	map = malloc(sizeof(char *) * (size_map + 1));
-// 	if (map == NULL)
-// 		return ;
-// 	i = 0;
-// 	while (game->file_content[start2])
-// 	{
-// 		map[i] = ft_strdup(game->file_content[start2]);
-// 		i++;
-// 		start2++;
-// 	}
-
-// 	map[i] = NULL;
-// 	game->map = map;
-// }
 
 int	is_param_map(char *line)
 {
@@ -110,53 +122,69 @@ int	is_param_map(char *line)
 	return (0);
 }
 
+int	is_map_line(char *line)
+{
+	int	i = 0;
+
+	while (line[i])
+	{
+		if (line[i] != '0' && line[i] != '1' && line[i] != ' '
+			&& line[i] != 'N' && line[i] != 'S'
+			&& line[i] != 'E' && line[i] != 'W'
+			&& line[i] != '\n' && line[i] != '\t')
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
+int	is_line_empty(char *line)
+{
+	int	i = 0;
+
+	while (line[i])
+	{
+		if (line[i] != ' ' && line[i] != '\t' && line[i] != '\n')
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
 void	extract_map(t_game *game)
 {
-	int		i;
-	int		start;
-	int		size_map;
+	int		i; 
+	int start; 
+	int size_map;
 	char	**map;
-	char	*temp;
+	char *temp;
 	int		len;
-	int		j;
-	int		valid;
-
 	i = 0;
-	start = 0;
+	start = -1;
 	size_map = 0;
+
 	while (game->file_content[i])
 	{
-		if (!is_param_map(game->file_content[i])
-			&& game->file_content[i][0] != '\n')
+		if (is_map_line(game->file_content[i]) && !is_line_empty(game->file_content[i]))
 		{
 			start = i;
-			break ;
+			break;
 		}
 		i++;
 	}
+	if (start == -1)
+		return ;
 	i = start;
 	while (game->file_content[i])
 	{
-		j = 0;
-		valid = 0;
-		while (game->file_content[i][j])
-		{
-			if (game->file_content[i][j] != ' '
-				&& game->file_content[i][j] != '\t'
-				&& game->file_content[i][j] != '\n')
-			{
-				valid = 1;
-				break ;
-			}
-			j++;
-		}
-		if (valid == 0)
-			break ;
-		size_map++;
+		if (!is_line_empty(game->file_content[i]) && is_map_line(game->file_content[i]))
+			size_map++;
+		else
+			break;
 		i++;
 	}
 	map = malloc(sizeof(char *) * (size_map + 1));
-	if (map == NULL)
+	if (!map)
 		return ;
 	i = 0;
 	while (i < size_map)
@@ -170,4 +198,11 @@ void	extract_map(t_game *game)
 	}
 	map[i] = NULL;
 	game->map = map;
+	if (game->map == NULL || game->map[0] == NULL) 
+	{
+        printf("Error: La carte est vide.\n");
+        free_all(game);
+        exit(1);
+    }
 }
+

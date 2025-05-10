@@ -6,7 +6,7 @@
 /*   By: nas <nas@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 11:14:23 by yann              #+#    #+#             */
-/*   Updated: 2025/05/07 19:25:43 by nas              ###   ########.fr       */
+/*   Updated: 2025/05/10 11:04:37 by nas              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,14 @@ static char	*read_first_line(int fd, char *text)
 
 	if (text == NULL)
 		text = ft_calloc(1, 1);
+	if (!text)
+		return (NULL);
 	buffer = malloc((BUFFER_SIZE + 1) * sizeof(char));
 	if (buffer == NULL)
+	{
+		free(text);
 		return (NULL);
+	}
 	bytes_read = 1;
 	while (bytes_read > 0)
 	{
@@ -79,16 +84,19 @@ static char	*clean_first_line(char *text)
 		free(text);
 		return (NULL);
 	}
+	i++; // Saute le caractère '\n'
 	str = ft_calloc(ft_strlen(text) - i + 1, sizeof(char));
 	if (str == NULL)
-		return (NULL);
-	j = 0;
-	while (text[i++] != '\0')
 	{
-		str[j] = text[i];
+		free(text);
+		return (NULL);
+	}
+	j = 0;
+	while (text[i + j] != '\0')
+	{
+		str[j] = text[i + j];
 		j++;
 	}
-	str[j] = '\0';
 	free(text);
 	return (str);
 }
@@ -105,6 +113,11 @@ char	*get_next_line(int fd)
 		return (NULL);
 	output_text = get_line(text);
 	text = clean_first_line(text);
+	if (!output_text)
+	{
+		free(text);
+		text = NULL;
+	}
 	return (output_text);
 }
 

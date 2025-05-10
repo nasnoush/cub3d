@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nas <nas@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 14:12:54 by nadahman          #+#    #+#             */
-/*   Updated: 2025/05/07 14:14:13 by nadahman         ###   ########.fr       */
+/*   Updated: 2025/05/10 11:46:29 by nas              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,12 @@ char	**load_file(char *file_name)
 	while ((line = get_next_line(fd)) != NULL)
 	{
 		file[row] = ft_strdup(line);
-		if (row >= MAX_LINE)
-			break ;
+		if (file[row] == NULL || row >= MAX_LINE)
+		{
+			free(line);
+			free_file(file);
+			return (NULL);
+		}
 		free(line);
 		row++;
 	}
@@ -46,13 +50,16 @@ void	sort_pars(t_game *game)
 	i = 0;
 	while (game->file_content[i])
 	{
-		extract_texture(game->file_content[i], &game->text_no, "NO");
-		extract_texture(game->file_content[i], &game->text_so, "SO");
-		extract_texture(game->file_content[i], &game->text_we, "WE");
-		extract_texture(game->file_content[i], &game->text_ea, "EA");
-		extract_color(game->file_content[i], &game->color.color_floor_r,&game->color.color_floor_g, &game->color.color_floor_b, "F");
-		extract_color(game->file_content[i], &game->color.color_ceiling_r,&game->color.color_ceiling_g, &game->color.color_ceiling_b, "C");
+		extract_texture(game, game->file_content[i], &game->text_no, "NO");
+		extract_texture(game, game->file_content[i], &game->text_so, "SO");
+		extract_texture(game, game->file_content[i], &game->text_we, "WE");
+		extract_texture(game, game->file_content[i], &game->text_ea, "EA");
+		extract_color(game, game->file_content[i], &game->color.color_floor_r,&game->color.color_floor_g, &game->color.color_floor_b, "F");
+		extract_color(game, game->file_content[i], &game->color.color_ceiling_r,&game->color.color_ceiling_g, &game->color.color_ceiling_b, "C");
 		i++;
 	}
 	extract_map(game);
+	check_map_char(game);
+	check_param_order(game);
+	
 }
