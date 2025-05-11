@@ -6,7 +6,7 @@
 /*   By: nas <nas@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 10:02:42 by nadahman          #+#    #+#             */
-/*   Updated: 2025/05/10 11:30:40 by nas              ###   ########.fr       */
+/*   Updated: 2025/05/11 13:14:45 by nas              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 #include <stdlib.h>
 #include <fcntl.h>
 #include <string.h>
+
 
 typedef	struct s_color
 {
@@ -106,6 +107,15 @@ int check_wall(t_game *game);
 int	is_param_map(char *line);
 void check_param_order(t_game *game);
 void	check_map_char(t_game *game);
+int	is_player_pos(char c);
+int	is_valid_tile(char c);
+void	print_free_exit(t_game *game, char *str);
+int	is_line_empty(char *line);
+int	is_map_line(char *line);
+int start_index(char **file);
+int count_map_line(char **file, int start);
+char **fill_map(char **file, int start, int size);
+
 
 
 // free 

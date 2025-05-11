@@ -6,7 +6,7 @@
 /*   By: nas <nas@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 09:57:02 by nadahman          #+#    #+#             */
-/*   Updated: 2025/05/10 11:26:32 by nas              ###   ########.fr       */
+/*   Updated: 2025/05/11 13:14:52 by nas              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,10 @@ int check_all_condition(t_game *game)
 {
 	if (check_wall(game) == 0)
 		return (0);
-	
 	if (check_is_valid(game) == 0)
 		return (0);
-		
 	if (check_if_double(game) == 0)
 		return (0);
-	
-	// check si la map est bien a la fin du fichier 
-	
 	return (1);
 }
 
@@ -101,13 +96,8 @@ void check_param_order(t_game *game)
 			break ;
 		i++;
 	}
-
 	if (count != 6)
-	{
-		printf("Error : Probleme dans les parametres de jeu !\n");
-		free_all(game); 
-		exit (1);
-	}
+		print_free_exit(game, "Error : Probleme dans les parametres de jeu !");
 }
 
 void	check_map_char(t_game *game)
@@ -118,23 +108,15 @@ void	check_map_char(t_game *game)
 
 	map = game->map;
 	if (!map) 
-	{
-        printf("Error : Carte vide\n");
-		free_all(game);
-        exit(1);
-	}
+        print_free_exit(game, "Error : Carte invalide !");
 	i = 0;
 	while (map[i])
 	{
 		j = 0;
 		while (map[i][j])
 		{
-			if (map[i][j] != '1' && map[i][j] != '0' && map[i][j] != 'S' && map[i][j] != 'N' && map[i][j] != 'E' && map[i][j] != 'W' && map[i][j] != ' ' && map[i][j] != '\t')
-			{
-				printf("Error : Caractere invalide dans la map");
-				free_all(game);
-				exit (1);
-			}
+			if (map[i][j] != '1' && map[i][j] != '0' && map[i][j] != 'S' && map[i][j] != 'N' && map[i][j] != 'E' && map[i][j] != 'W' && map[i][j] != ' ')
+				print_free_exit(game, "Error : Caractere invalide dans la map !");
 			j++;
 		}
 		i++;
