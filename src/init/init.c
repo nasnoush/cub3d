@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yann <yann@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: yaoberso <yaoberso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 19:09:24 by nas               #+#    #+#             */
-/*   Updated: 2025/05/09 14:16:23 by yann             ###   ########.fr       */
+/*   Updated: 2025/05/12 08:56:10 by yaoberso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ void	init_struct_color(t_game *game)
 
 void    init_mlx(t_game *game)
 {
+	game->img.width = WIDTH;
+    game->img.height = HEIGHT;
     game->mlx.mlx_ptr = mlx_init();
     if (!game->mlx.mlx_ptr)
         return ;
@@ -55,6 +57,7 @@ void init_player(t_game *game)
 	map = game->map;
 	while(map[x] != NULL)
 	{
+		y = 0;
 		while(map[x][y] != '\0')
 		{
 			if (map[x][y] == 'N' || map[x][y] == 'S' || map[x][y] == 'E' || map[x][y] == 'W')
@@ -68,27 +71,28 @@ void init_player(t_game *game)
 					game->player.plane_x = 0.66;
 					game->player.plane_y = 0;
 				}
-				if (map[x][y] == 'S')
+				else if (map[x][y] == 'S')
 				{
 					game->player.dir_x = 0;
 					game->player.dir_y = 1;
 					game->player.plane_x = -0.66;
 					game->player.plane_y = 0;
 				}
-				if (map[x][y] == 'E')
+				else if (map[x][y] == 'E')
 				{
 					game->player.dir_x = 1;
 					game->player.dir_y = 0;
 					game->player.plane_x = 0;
 					game->player.plane_y = 0.66;
 				}
-				if (map[x][y] == 'W')
+				else if (map[x][y] == 'W')
 				{
 					game->player.dir_x = -1;
 					game->player.dir_y = 0;
 					game->player.plane_x = 0;
 					game->player.plane_y = -0.66;
 				}
+				return;
 			}
 			y++;
 		}

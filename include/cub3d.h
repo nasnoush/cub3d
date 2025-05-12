@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yann <yann@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: yaoberso <yaoberso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 10:02:42 by nadahman          #+#    #+#             */
-/*   Updated: 2025/05/09 15:10:02 by yann             ###   ########.fr       */
+/*   Updated: 2025/05/12 08:57:58 by yaoberso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 #define CUB3D_H
 
 #define MAX_LINE 10000
-#define WIDTH 800
-#define HEIGHT 600
+#define WIDTH 1600
+#define HEIGHT 1200
 
 #include "../libft/libft.h"
 #include "../mlx_linux/mlx.h"
@@ -135,6 +135,7 @@ int check_wall(t_game *game);
 
 
 // free 
+int	exit_game(t_game *game);
 void	free_map(t_game *game);
 void	free_file_content(t_game *game);
 void	free_all(t_game *game);
