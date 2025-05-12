@@ -3,25 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nas <nas@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 10:02:42 by nadahman          #+#    #+#             */
-/*   Updated: 2025/05/11 13:14:45 by nas              ###   ########.fr       */
+/*   Updated: 2025/05/12 10:52:33 by nadahman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #ifndef CUB3D_H
 #define CUB3D_H
 
 #define MAX_LINE 10000
+#define WIDTH 1600
+#define HEIGHT 1200
+#define KEY_ESC 65307
+#define KEY_W 119
+#define KEY_S 115
+#define KEY_A 97
+#define KEY_D 100
 
 #include "../libft/libft.h"
+#include "../mlx_linux/mlx.h"
 #include "../get_next_line/get_next_line.h"
 #include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <fcntl.h>
 #include <string.h>
+#include <math.h>
 
 
 typedef	struct s_color
@@ -65,17 +75,34 @@ typedef struct s_img
 
 typedef struct s_tiles
 {
-	void		*north;
-	void		*south;
-	void		*west;
-	void		*east;
-	void        *ceiling;
-    void        *floor;
-}				t_tiles;
+	t_img north;
+	t_img south;
+	t_img west;
+	t_img east;
+	t_img ceiling;
+	t_img floor;
+} t_tiles;
+
+typedef struct s_ray
+{
+	double	camera_x;
+	double	ray_dir_x;
+	double	ray_dir_y;
+	int		map_x;
+	int		map_y;
+	double	side_dist_x;
+	double	side_dist_y;
+	double	delta_dist_x;
+	double	delta_dist_y;
+	double	perp_wall_dist;
+	int		step_x;
+	int		step_y;
+	int		hit;
+	int		side;
+}	t_ray;
 
 typedef struct s_game
 {
-	void	*mlx;
 	char **file_content;
 	
 	char **map;
@@ -85,13 +112,20 @@ typedef struct s_game
 	char *text_ea;
 
 	t_color	color;
+	t_mlx	mlx;
 	t_img	img;
-	t_tiles tiles;
+	t_player	player;
+	t_tiles		tiles;
+	t_ray		ray;
 	
 }t_game ;
 
 // init
+
 void	init_struct_color(t_game *game);
+void init_raycasting(t_game *game, int x);
+void init_player(t_game *game);
+void init_mlx(t_game *game);
 
 // parsing
 
@@ -119,16 +153,20 @@ char **fill_map(char **file, int start, int size);
 
 
 // free 
+int	exit_game(t_game *game);
 void	free_map(t_game *game);
 void	free_file_content(t_game *game);
 void	free_all(t_game *game);
 void	free_file(char **file);
 
 // assets
-void	load_tiles(t_game *game, t_tiles *tiles, t_img *img);
+void	load_tile_images(t_game *game);
 
 // utils
 
 int count_line(t_game *game);
+
+// raycasting
+void raycasting(t_game *game);
 
 #endif

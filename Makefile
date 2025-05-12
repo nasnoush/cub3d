@@ -3,6 +3,18 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
+#    By: yaoberso <yaoberso@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2025/04/28 13:48:13 by nadahman          #+#    #+#              #
+#    Updated: 2025/05/12 08:38:16 by yaoberso         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
 #    By: nas <nas@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/28 13:48:13 by nadahman          #+#    #+#              #
@@ -20,6 +32,7 @@ MLX_FLAGS = -L$(MLX_DIR) -lmlx_Linux -L/usr/lib -lXext -lX11 -lm -lz
 INCLUDES = -I./includes -I$(MLX_DIR) -I./libft -I./get_next_line
 
 SRCS_DIR = src
+ASSETS_DIR = assets
 PARSING_DIR = parsing
 RENDER_DIR = render
 UTILS_DIR = utils
@@ -27,6 +40,7 @@ GNL_DIR = get_next_line
 INIT = init
 
 SRCS = $(SRCS_DIR)/main.c \
+	   $(wildcard $(ASSETS_DIR)/*.c) \
        $(wildcard $(SRCS_DIR)/$(PARSING_DIR)/*.c) \
 	   $(wildcard $(GNL_DIR)/*.c) \
        $(wildcard $(SRCS_DIR)/$(UTILS_DIR)/*.c) \

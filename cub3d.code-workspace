@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"files.associations": {
+			"cub3d.h": "c",
+			"string.h": "c"
+		}
+	}
+}

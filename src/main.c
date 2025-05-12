@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nas <nas@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 13:47:20 by nadahman          #+#    #+#             */
-/*   Updated: 2025/05/11 09:55:42 by nas              ###   ########.fr       */
+/*   Updated: 2025/05/12 10:29:10 by nadahman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,19 @@
 // 	main_loop();
 // }
 
+int	render(t_game *game)
+{
+	raycasting(game); // dessine toute la scène dans game->img
+	mlx_put_image_to_window(game->mlx.mlx_ptr, game->mlx.win_ptr, game->img.img_ptr, 0, 0);
+	return (0);
+}
 
+int	exit_game(t_game *game)
+{
+	free_all(game);
+	exit(0);
+	return (0);
+}
 
 int main(int ac, char **av)
 {
@@ -37,22 +49,30 @@ int main(int ac, char **av)
 		printf("Error : <map> .cub file is expected");
 		return (1);
 	}
-	
 	game = malloc(sizeof(t_game));
 	if (game == NULL)
 		return (1);
 	ft_memset(game, 0, sizeof(t_game));
 	init_struct_color(game);
+	printf("%s", game->text_no);
 	game->file_content = load_file(av[1]);
+	printf("%s", game->text_no);
 	sort_pars(game);
+	printf("%s", game->text_no);
 	if (check_all_condition(game) == 0)
 	{
-		free_all(game);
-		exit(1);
+		exit_game(game);
 	}
-	
-	
-	
+	printf("%s", game->text_no);
+	init_mlx(game);
+	printf("%s", game->text_no);
+	init_player(game);
+	printf("%s", game->text_no);
+	load_tile_images(game);
+	mlx_loop_hook(game->mlx.mlx_ptr, render, game);
+	mlx_hook(game->mlx.win_ptr, 17, 0, exit_game, game);
+	mlx_loop(game->mlx.mlx_ptr);
+	free_all(game);
 	printf("NO texture : %s\n", game->text_no);
 	printf("SO texture : %s\n", game->text_so);
 	printf("WE texture : %s\n", game->text_we);
