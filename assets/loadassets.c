@@ -3,23 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   loadassets.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nas <nas@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: yann <yann@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 13:56:05 by nas               #+#    #+#             */
-/*   Updated: 2025/05/05 14:04:31 by nas              ###   ########.fr       */
+/*   Updated: 2025/05/09 15:32:01 by yann             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../include/cub3d.h"
 
-void	load_tile_images(t_game *game, t_tiles *tiles, t_img *img)
+void	load_tile_images(t_game *game)
 {
-	tiles->north = mlx_png_file_to_image(game->mlx, game->text_no, img->width,
-			img->height);
-	tiles->south = mlx_png_file_to_image(game->mlx, game->text_so, img->width,
-		img->height);
-	tiles->east = mlx_png_file_to_image(game->mlx, game->text_ea ,img->width,
-		img->height);
-	tiles->west = mlx_png_file_to_image(game->mlx, game->text_we ,img->width,
-		img->height);
+	game->tiles.north.img_ptr = mlx_xpm_file_to_image(game->mlx.mlx_ptr,
+	game->text_no, &game->tiles.north.width, &game->tiles.north.height);
+	game->tiles.south.img_ptr = mlx_xpm_file_to_image(game->mlx.mlx_ptr,
+	game->text_so, &game->tiles.north.width, &game->tiles.north.height);
+	game->tiles.west.img_ptr = mlx_xpm_file_to_image(game->mlx.mlx_ptr,
+	game->text_we, &game->tiles.north.width, &game->tiles.north.height);
+	game->tiles.east.img_ptr = mlx_xpm_file_to_image(game->mlx.mlx_ptr,
+	game->text_ea, &game->tiles.north.width, &game->tiles.north.height);
 }

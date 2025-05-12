@@ -6,7 +6,7 @@
 /*   By: yann <yann@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 19:09:24 by nas               #+#    #+#             */
-/*   Updated: 2025/05/08 15:06:51 by yann             ###   ########.fr       */
+/*   Updated: 2025/05/09 14:16:23 by yann             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,6 @@ void	init_struct_color(t_game *game)
 	game->color.color_ceiling_g = -1;
 	game->color.color_ceiling_b = -1;
 }
-
-#include "cub3d.h"
 
 void    init_mlx(t_game *game)
 {
@@ -40,9 +38,9 @@ void    init_mlx(t_game *game)
 
     game->img.img_data = mlx_get_data_addr(
         game->img.img_ptr,
-        game->img.bpp,
-        game->img.line_length,
-        game->img.endian
+        &game->img.bpp,
+        &game->img.line_length,
+        &game->img.endian
     );
 }
 
@@ -55,7 +53,7 @@ void init_player(t_game *game)
 	x = 0;
 	y = 0;
 	map = game->map;
-	while(map[x] != '\0')
+	while(map[x] != NULL)
 	{
 		while(map[x][y] != '\0')
 		{
@@ -107,4 +105,24 @@ void init_raycasting(t_game *game, int x)
     game->ray.map_y = (int)game->player.y;
     game->ray.delta_dist_x = fabs(1 / game->ray.ray_dir_x);
     game->ray.delta_dist_y = fabs(1 / game->ray.ray_dir_y);
+	if (game->ray.ray_dir_x < 0)
+	{
+    	game->ray.step_x = -1;
+    	game->ray.side_dist_x = (game->player.x - game->ray.map_x) * game->ray.delta_dist_x;
+	}
+	else
+	{
+    	game->ray.step_x = 1;
+    	game->ray.side_dist_x = (game->ray.map_x + 1.0 - game->player.x) * game->ray.delta_dist_x;
+	}
+	if (game->ray.ray_dir_y < 0)
+	{
+		game->ray.step_y = -1;
+    	game->ray.side_dist_y = (game->player.y - game->ray.map_y) * game->ray.delta_dist_y;
+	}
+	else
+	{
+    	game->ray.step_y = 1;
+    	game->ray.side_dist_y = (game->ray.map_y + 1.0 - game->player.y) * game->ray.delta_dist_y;
+	}
 }

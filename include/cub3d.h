@@ -6,7 +6,7 @@
 /*   By: yann <yann@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 10:02:42 by nadahman          #+#    #+#             */
-/*   Updated: 2025/05/08 14:58:26 by yann             ###   ########.fr       */
+/*   Updated: 2025/05/09 15:10:02 by yann             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,14 @@
 #define HEIGHT 600
 
 #include "../libft/libft.h"
+#include "../mlx_linux/mlx.h"
 #include "../get_next_line/get_next_line.h"
 #include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <fcntl.h>
 #include <string.h>
+#include <math.h>
 
 typedef	struct s_color
 {
@@ -35,25 +37,6 @@ typedef	struct s_color
 	int color_ceiling_b;
 	
 } t_color;
-
-typedef struct s_game
-{
-	char **file_content;
-	
-	char **map;
-	char *text_no;
-	char *text_so;
-	char *text_we;
-	char *text_ea;
-
-	t_color	color;
-	t_mlx	mlx;
-	t_img	img;
-	t_player	player;
-	t_tiles		tiles;
-	t_ray		ray;
-	
-}t_game ;
 
 typedef struct s_mlx
 {
@@ -111,12 +94,32 @@ typedef struct s_ray
 	int		side;
 }	t_ray;
 
+typedef struct s_game
+{
+	char **file_content;
+	
+	char **map;
+	char *text_no;
+	char *text_so;
+	char *text_we;
+	char *text_ea;
+
+	t_color	color;
+	t_mlx	mlx;
+	t_img	img;
+	t_player	player;
+	t_tiles		tiles;
+	t_ray		ray;
+	
+}t_game ;
 
 // init
 
+void	load_tile_images(t_game *game);
 void	init_struct_color(t_game *game);
 void init_raycasting(t_game *game, int x);
 void init_player(t_game *game);
+void init_mlx(t_game *game);
 
 // parsing
 

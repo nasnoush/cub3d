@@ -1,7 +1,7 @@
-NO ./path_to_north_texture
-EA ./path_to_the_east_texture
-SO ./path_to_the_south_texture
-WE ./path_to_the_west_texture
+NO ./assets/textures/tex_n.xpm
+EA ./assets/textures/tex_e.xpm
+SO ./assets/textures/tex_s.xpm
+WE ./assets/textures/tex_w.xpm
 C 225,30,0
 F 220,100,0
 
