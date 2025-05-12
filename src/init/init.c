@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yaoberso <yaoberso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 19:09:24 by nas               #+#    #+#             */
-/*   Updated: 2025/05/12 10:35:50 by nadahman         ###   ########.fr       */
+/*   Updated: 2025/05/12 11:52:32 by yaoberso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void init_player(t_game *game)
 				if (map[x][y] == 'N')
 				{
 					game->player.dir_x = 0;
-					game->player.dir_y = -1;
+					game->player.dir_y = 0.66;
 					game->player.plane_x = 10;
 					game->player.plane_y = 0;
 				}
@@ -75,7 +75,7 @@ void init_player(t_game *game)
 				{
 					game->player.dir_x = 0;
 					game->player.dir_y = 1;
-					game->player.plane_x = -10;
+					game->player.plane_x = -0.66;
 					game->player.plane_y = 0;
 				}
 				else if (map[x][y] == 'E')
@@ -83,14 +83,14 @@ void init_player(t_game *game)
 					game->player.dir_x = 1;
 					game->player.dir_y = 0;
 					game->player.plane_x = 0;
-					game->player.plane_y = 10;
+					game->player.plane_y = 0.66;
 				}
 				else if (map[x][y] == 'W')
 				{
 					game->player.dir_x = -1;
 					game->player.dir_y = 0;
 					game->player.plane_x = 0;
-					game->player.plane_y = 10;
+					game->player.plane_y = -0.66;
 				}
 				return;
 			}
