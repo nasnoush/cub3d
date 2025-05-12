@@ -6,7 +6,7 @@
 /*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 10:02:42 by nadahman          #+#    #+#             */
-/*   Updated: 2025/05/12 10:52:33 by nadahman         ###   ########.fr       */
+/*   Updated: 2025/05/12 13:37:52 by nadahman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,17 @@
 #define MAX_LINE 10000
 #define WIDTH 1600
 #define HEIGHT 1200
+
 #define KEY_ESC 65307
 #define KEY_W 119
 #define KEY_S 115
 #define KEY_A 97
 #define KEY_D 100
+
+#define LEFT 65361
+#define RIGHT 65363
+
+
 
 #include "../libft/libft.h"
 #include "../mlx_linux/mlx.h"
@@ -168,5 +174,20 @@ int count_line(t_game *game);
 
 // raycasting
 void raycasting(t_game *game);
+
+// moove
+int keycode_mo(int keycode, t_game *game);
+int moove_up(t_game *game);
+int moove_left(t_game *game);
+int moove_down(t_game *game);
+int moove_right(t_game *game);
+int exit_escape(t_game *game);
+int slide_right(t_game *game);
+int slide_left(t_game *game);
+int keycode_sl(int keycode, t_game *game);
+int	mouse_move(int x, int y, t_game *game);
+
+
+
 
 #endif
