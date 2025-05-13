@@ -6,7 +6,7 @@
 /*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 14:12:54 by nadahman          #+#    #+#             */
-/*   Updated: 2025/05/13 10:25:17 by nadahman         ###   ########.fr       */
+/*   Updated: 2025/05/13 13:58:08 by nadahman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,16 @@ void	check_map_end(t_game *game)
 	}
 	print_free_exit(game, "Error : Problemes dans les parametres de jeu ");
 }
+unsigned int rgb_int(int r, int g, int b)
+{
+	unsigned int rgb;
+	
+	rgb = r;
+	rgb = (rgb << 8) | g;
+	rgb = (rgb << 8) | b;
+
+	return (rgb);
+}
 
 void	sort_pars(t_game *game)
 {
@@ -83,6 +93,8 @@ void	sort_pars(t_game *game)
 			&game->color.color_ceiling_g, &game->color.color_ceiling_b, "C");
 		i++;
 	}
+	game->color.ceiling = rgb_int(game->color.color_ceiling_r, game->color.color_ceiling_g, game->color.color_ceiling_b);
+	game->color.floor = rgb_int(game->color.color_floor_r, game->color.color_floor_g, game->color.color_floor_b);
 	extract_map(game);
 	check_map_end(game);
 	check_map_char(game);

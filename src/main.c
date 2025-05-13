@@ -6,25 +6,11 @@
 /*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 13:47:20 by nadahman          #+#    #+#             */
-/*   Updated: 2025/05/13 10:57:47 by nadahman         ###   ########.fr       */
+/*   Updated: 2025/05/13 14:07:50 by nadahman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
-
-// int main(int argc, char **argv)
-// {
-// 	char **map;
-// 	if (argc != 2)
-// 		return (1);
-// 	if (checkmap(map) == 0)
-// 	{
-// 		free_all();
-// 		return (1);
-// 	}
-// 	init_mlx();
-// 	main_loop();
-// }
 
 // int main(int ac, char **av)
 // {
@@ -108,20 +94,17 @@ int main(int ac, char **av)
 	ft_memset(game, 0, sizeof(t_game));
 	init_struct_color(game);
 	game->file_content = load_file(av[1]);
+	init_mlx(game);
 	sort_pars(game);
 	if (check_all_condition(game) == 0)
-	{
 		exit_game(game);
-	}
-	init_mlx(game);
-	init_player(game);
 	load_tile_images(game);
+	init_player(game);
 	mlx_loop_hook(game->mlx.mlx_ptr, render, game);
 	mlx_hook(game->mlx.win_ptr, 2, 1L << 0, keycode_mo, game);
 	mlx_hook(game->mlx.win_ptr, 6, (1L << 6), mouse_move, game);
 	mlx_hook(game->mlx.win_ptr, 17, 0, exit_game, game);
 	mlx_loop(game->mlx.mlx_ptr);
-	
 	free_all(game);
 	return (0);
 }
