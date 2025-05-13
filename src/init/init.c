@@ -6,7 +6,7 @@
 /*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 19:09:24 by nas               #+#    #+#             */
-/*   Updated: 2025/05/12 12:01:32 by nadahman         ###   ########.fr       */
+/*   Updated: 2025/05/13 10:48:31 by nadahman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	init_struct_color(t_game *game)
 	game->color.color_ceiling_b = -1;
 }
 
-void    init_mlx(t_game *game)
+void     init_mlx(t_game *game)
 {
 	game->img.width = WIDTH;
     game->img.height = HEIGHT;

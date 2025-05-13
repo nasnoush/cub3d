@@ -6,7 +6,7 @@
 /*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 10:02:42 by nadahman          #+#    #+#             */
-/*   Updated: 2025/05/12 13:37:52 by nadahman         ###   ########.fr       */
+/*   Updated: 2025/05/13 10:51:07 by nadahman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,6 +164,8 @@ void	free_map(t_game *game);
 void	free_file_content(t_game *game);
 void	free_all(t_game *game);
 void	free_file(char **file);
+void	destroy_image(t_game *game);
+void	destroy_all(t_game *game);
 
 // assets
 void	load_tile_images(t_game *game);

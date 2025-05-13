@@ -6,14 +6,11 @@
 /*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 12:10:21 by nadahman          #+#    #+#             */
-/*   Updated: 2025/05/12 13:37:59 by nadahman         ###   ########.fr       */
+/*   Updated: 2025/05/13 09:58:55 by nadahman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
-
-#include <X11/Xlib.h>
-#include <X11/Xutil.h>
 
 void rotate_view(t_game *game, double rot_speed)
 {
@@ -48,7 +45,6 @@ int	mouse_move(int x, int y, t_game *game)
 
 	if (last_x == -1)
 		last_x = x;
-	
 	if (x < last_x)
 		slide_left(game);
 	else if (x > last_x)

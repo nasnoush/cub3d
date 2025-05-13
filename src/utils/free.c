@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nas <nas@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 13:20:53 by nadahman          #+#    #+#             */
-/*   Updated: 2025/05/10 10:43:32 by nas              ###   ########.fr       */
+/*   Updated: 2025/05/13 10:57:04 by nadahman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,5 +84,6 @@ void	free_all(t_game *game)
 	free_map(game);
 	free_file_content(game);
 	free_texture(game);
+	destroy_all(game);
 	free(game);
 }

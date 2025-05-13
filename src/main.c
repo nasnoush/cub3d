@@ -6,7 +6,7 @@
 /*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 13:47:20 by nadahman          #+#    #+#             */
-/*   Updated: 2025/05/12 13:34:50 by nadahman         ###   ########.fr       */
+/*   Updated: 2025/05/13 10:57:47 by nadahman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,6 @@ int	exit_game(t_game *game)
 {
 	free_all(game);
 	exit(0);
-	return (0);
 }
 
 

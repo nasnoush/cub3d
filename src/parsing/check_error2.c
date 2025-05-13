@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_error2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nas <nas@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 14:13:31 by nas               #+#    #+#             */
-/*   Updated: 2025/05/11 10:06:50 by nas              ###   ########.fr       */
+/*   Updated: 2025/05/13 10:26:46 by nadahman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 int	check_cote(char **map, int i, int j)
 {
-	if (i == 0 || !map[i - 1] || j >= ft_strlen(map[i - 1]) || map[i - 1][j] == ' ')
+	if (i == 0 || !map[i - 1] || j >= ft_strlen(map[i - 1]) || map[i
+			- 1][j] == ' ')
 		return (0);
 	if (!map[i + 1] || j >= ft_strlen(map[i + 1]) || map[i + 1][j] == ' ')
 		return (0);
@@ -22,7 +23,6 @@ int	check_cote(char **map, int i, int j)
 		return (0);
 	if (map[i][j + 1] == '\0' || map[i][j + 1] == ' ')
 		return (0);
-	
 	return (1);
 }
 
@@ -83,9 +83,3 @@ int	check_wall(t_game *game)
 		return (0);
 	return (1);
 }
-
-
-
-
-
-

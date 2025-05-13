@@ -6,7 +6,20 @@
 /*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 10:46:47 by nadahman          #+#    #+#             */
-/*   Updated: 2025/05/12 14:29:56 by nadahman         ###   ########.fr       */
+/*   Updated: 2025/05/13 11:35:10 by nadahman         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   raycasting.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yann <yann@student.42.fr>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/12 10:46:47 by nadahman          #+#    #+#             */
+/*   Updated: 2025/05/12 22:04:26 by yann             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,24 +56,45 @@ void algo_dda(t_game *game)
     }
 }
 
+void draw_ceiling_floor(t_game *game, int x, int draw_start, int draw_end)
+{
+    int y;
+    unsigned int ceiling_color = 0x00FF00; // Couleur bleu ciel pour le plafond
+    unsigned int floor_color = 0x00FF00;   // Couleur marron pour le sol
+
+    // Dessiner le plafond (de 0 à draw_start)
+    y = 0;
+    while (y < draw_start)
+    {
+        if (y >= 0 && y < HEIGHT && x >= 0 && x < WIDTH)
+            *(unsigned int *)(game->img.img_data + (y * game->img.line_length + x * (game->img.bpp / 8))) = ceiling_color;
+        y++;
+    }
+
+    // Dessiner le sol (de draw_end à HEIGHT)
+    y = draw_end;
+    while (y < HEIGHT)
+    {
+        if (y >= 0 && y < HEIGHT && x >= 0 && x < WIDTH)
+            *(unsigned int *)(game->img.img_data + (y * game->img.line_length + x * (game->img.bpp / 8))) = floor_color;
+        y++;
+    }
+}
 
 void draw_image(t_game *game, int x)
 {
-    t_img   *tex;
-    int     y;
-    int     line_height;
-    int     draw_start;
-    int     draw_end;
-    double  wall_x;
-    int     tex_x, tex_y;
-    int     color;
-    double  step;
-    double  tex_pos;
-
-
-    tex = NULL;
+    t_img *tex;
+    int y;
+    int line_height;
+    int draw_start;
+    int draw_end;
+    double wall_x;
+    int tex_x, tex_y;
+    int color;
+    double step;
+    double tex_pos;
     
-
+    tex = NULL;
     if (game->ray.side == 0)
     {
         if (game->ray.ray_dir_x < 0)
@@ -68,47 +102,62 @@ void draw_image(t_game *game, int x)
         else
             tex = &game->tiles.east;
     }
-    else 
+    else
     {
         if (game->ray.ray_dir_y < 0)
             tex = &game->tiles.north;
         else
             tex = &game->tiles.south;
     }
+    
     if (!tex || !tex->img_ptr || !tex->img_data)
     {
         printf("Erreur: Texture invalide dans draw_image\n");
         return;
     }
+    
     line_height = (int)(HEIGHT / game->ray.perp_wall_dist);
     if (line_height <= 0)
         line_height = HEIGHT;
+    
     draw_start = -line_height / 2 + HEIGHT / 2;
     if (draw_start < 0)
-        draw_start = 0;  
+        draw_start = 0;
+        
     draw_end = line_height / 2 + HEIGHT / 2;
     if (draw_end >= HEIGHT)
         draw_end = HEIGHT - 1;
+    
+    // Dessiner le plafond et le sol avant de dessiner le mur
+    draw_ceiling_floor(game, x, draw_start, draw_end);
+    
     if (game->ray.side == 0)
         wall_x = game->player.y + game->ray.perp_wall_dist * game->ray.ray_dir_y;
     else
         wall_x = game->player.x + game->ray.perp_wall_dist * game->ray.ray_dir_x;
+    
     wall_x -= floor(wall_x);
     tex_x = (int)(wall_x * tex->width);
+    
     if (tex_x < 0 || tex_x >= tex->width)
         tex_x = 0;
-    if ((game->ray.side == 0 && game->ray.ray_dir_x > 0) || 
+        
+    if ((game->ray.side == 0 && game->ray.ray_dir_x > 0) ||
         (game->ray.side == 1 && game->ray.ray_dir_y < 0))
         tex_x = tex->width - tex_x - 1;
+        
     step = 1.0 * tex->height / line_height;
     tex_pos = (draw_start - HEIGHT / 2 + line_height / 2) * step;
+    
     y = draw_start;
     while (y < draw_end)
     {
         tex_y = (int)tex_pos & (tex->height - 1);
         if (tex_y < 0 || tex_y >= tex->height)
             tex_y = 0;
+            
         tex_pos += step;
+        
         if (tex->bpp / 8 * tex_x + tex_y * tex->line_length < tex->height * tex->line_length)
         {
             color = *(unsigned int *)(tex->img_data + (tex_y * tex->line_length + tex_x * (tex->bpp / 8)));

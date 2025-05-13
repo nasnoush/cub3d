@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_error.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nas <nas@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 10:06:32 by nas               #+#    #+#             */
-/*   Updated: 2025/05/11 12:55:05 by nas              ###   ########.fr       */
+/*   Updated: 2025/05/13 10:26:15 by nadahman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,14 @@ void	print_free_exit(t_game *game, char *str)
 	if (str)
 		printf("%s\n", str);
 	free_all(game);
-	exit (1);
+	exit(1);
 }
 
 int	is_line_empty(char *line)
 {
-	int	i = 0;
+	int	i;
 
+	i = 0;
 	while (line[i])
 	{
 		if (line[i] != ' ' && line[i] != '\t' && line[i] != '\n')
