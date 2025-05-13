@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   keycode_slide.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yaoberso <yaoberso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 12:10:21 by nadahman          #+#    #+#             */
-/*   Updated: 2025/05/13 09:58:55 by nadahman         ###   ########.fr       */
+/*   Updated: 2025/05/13 12:44:41 by yaoberso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,13 @@ void rotate_view(t_game *game, double rot_speed)
 
 int	slide_left(t_game *game)
 {
-	rotate_view(game, -0.05);
+	rotate_view(game, -0.025);
 	return (0);
 }
 
 int	slide_right(t_game *game)
 {
-	rotate_view(game, 0.05);
+	rotate_view(game, 0.025);
 	return (0);
 }
 

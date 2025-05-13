@@ -6,7 +6,7 @@
 /*   By: yaoberso <yaoberso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 10:02:42 by nadahman          #+#    #+#             */
-/*   Updated: 2025/05/13 12:29:29 by yaoberso         ###   ########.fr       */
+/*   Updated: 2025/05/13 14:05:13 by yaoberso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,8 @@ typedef struct s_color
 	int			color_ceiling_r;
 	int			color_ceiling_g;
 	int			color_ceiling_b;
-
+	unsigned int ceiling;
+	unsigned int floor;
 }				t_color;
 
 typedef struct s_mlx

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yaoberso <yaoberso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 10:46:47 by nadahman          #+#    #+#             */
-/*   Updated: 2025/05/13 11:35:10 by nadahman         ###   ########.fr       */
+/*   Updated: 2025/05/13 14:05:58 by yaoberso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,8 @@ void algo_dda(t_game *game)
 void draw_ceiling_floor(t_game *game, int x, int draw_start, int draw_end)
 {
     int y;
-    unsigned int ceiling_color = 0x00FF00; // Couleur bleu ciel pour le plafond
-    unsigned int floor_color = 0x00FF00;   // Couleur marron pour le sol
+    unsigned int ceiling_color = game->color.ceiling; // Couleur bleu ciel pour le plafond
+    unsigned int floor_color = game->color.floor;  // Couleur marron pour le sol
 
     // Dessiner le plafond (de 0 à draw_start)
     y = 0;

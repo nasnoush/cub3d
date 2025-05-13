@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yaoberso <yaoberso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 13:47:20 by nadahman          #+#    #+#             */
-/*   Updated: 2025/05/13 10:57:47 by nadahman         ###   ########.fr       */
+/*   Updated: 2025/05/13 14:09:45 by yaoberso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,12 +108,12 @@ int main(int ac, char **av)
 	ft_memset(game, 0, sizeof(t_game));
 	init_struct_color(game);
 	game->file_content = load_file(av[1]);
+	init_mlx(game);
 	sort_pars(game);
 	if (check_all_condition(game) == 0)
 	{
 		exit_game(game);
 	}
-	init_mlx(game);
 	init_player(game);
 	load_tile_images(game);
 	mlx_loop_hook(game->mlx.mlx_ptr, render, game);
