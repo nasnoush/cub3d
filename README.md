@@ -31,8 +31,11 @@ je pense faire une condition, si j ai une seul ligne avec une fonction qui compt
 - quand je met la map au debut adapter le message pour qu'il soit plus large -->
 
 <!-- - faire la norminette et leaks sur cette partie de parsing -->
-
-- gerer les doublons dans les texutres, exemple si il y'a deux fois NO et que il y'a bien 6 elements
-
-- faire en sorte que la map soit parser jusqu'au dernier 1 sans prendre ce qu'il y'a apres sinon ca met le mauvais message d'erreur
+<!-- 
+- gerer les doublons dans les texutres, exemple si il y'a deux fois NO et que il y'a bien 6 elements -->
+<!-- 
+- faire en sorte que la map soit parser jusqu'au dernier 1 sans prendre ce qu'il y'a apres sinon ca met le mauvais message d'erreur -->
  
+		_
+ carre | |
+		

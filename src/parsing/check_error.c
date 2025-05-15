@@ -6,13 +6,13 @@
 /*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 09:57:02 by nadahman          #+#    #+#             */
-/*   Updated: 2025/05/13 10:25:36 by nadahman         ###   ########.fr       */
+/*   Updated: 2025/05/15 11:23:14 by nadahman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-int check_all_condition(t_game *game)
+int	check_all_condition(t_game *game)
 {
 	if (check_wall(game) == 0)
 		return (0);
@@ -23,13 +23,13 @@ int check_all_condition(t_game *game)
 	return (1);
 }
 
-int check_if_double(t_game *game)
+int	check_if_double(t_game *game)
 {
-	int i;
-	int j;
-	int count;
-	char **map;
-	
+	int		i;
+	int		j;
+	int		count;
+	char	**map;
+
 	count = 0;
 	i = 0;
 	map = game->map;
@@ -38,7 +38,8 @@ int check_if_double(t_game *game)
 		j = 0;
 		while (map[i][j])
 		{
-			if (map[i][j] == 'N' || map[i][j] == 'S' || map[i][j] == 'E' || map[i][j] == 'W')
+			if (map[i][j] == 'N' || map[i][j] == 'S' || map[i][j] == 'E'
+				|| map[i][j] == 'W')
 				count++;
 			j++;
 		}
@@ -52,22 +53,25 @@ int check_if_double(t_game *game)
 	return (1);
 }
 
-
-int check_is_valid(t_game *game)
+int	check_is_valid(t_game *game)
 {
-	int i = 0;
-	int j;
-	char **map;
+	int		i;
+	int		j;
+	char	**map;
 
+	i = 0;
 	map = game->map;
 	while (map[i])
 	{
 		j = 0;
 		while (map[i][j])
 		{
-			if (map[i][j] != '1' && map[i][j] != ' ' && map[i][j] != '0' && map[i][j] != 'N' && map[i][j] != 'S' && map[i][j] != 'E' && map[i][j] != 'W')
+			if (map[i][j] != '1' && map[i][j] != ' ' && map[i][j] != '0'
+				&& map[i][j] != 'N' && map[i][j] != 'S' && map[i][j] != 'E'
+				&& map[i][j] != 'W')
 			{
-				printf("Error : Caractere invalide / manquant pour constituer la map\n");
+				printf(" Error : ");
+				printf("Caractere invalide/ manquant pour constituer la map\n");
 				return (0);
 			}
 			j++;
@@ -77,17 +81,15 @@ int check_is_valid(t_game *game)
 	return (1);
 }
 
-
-void check_param_order(t_game *game)
+void	check_param_order(t_game *game)
 {
-	int i;
-	char **file;
-	int count;
+	int		i;
+	char	**file;
+	int		count;
 
 	file = game->file_content;
 	i = 0;
 	count = 0;
-
 	while (file[i])
 	{
 		if (is_param_map(file[i]))
@@ -102,21 +104,24 @@ void check_param_order(t_game *game)
 
 void	check_map_char(t_game *game)
 {
-	int i;
-	int j;
-	char **map;
+	int		i;
+	int		j;
+	char	**map;
 
 	map = game->map;
-	if (!map) 
-        print_free_exit(game, "Error : Carte invalide !");
+	if (!map)
+		print_free_exit(game, "Error : Carte invalide !");
 	i = 0;
 	while (map[i])
 	{
 		j = 0;
 		while (map[i][j])
 		{
-			if (map[i][j] != '1' && map[i][j] != '0' && map[i][j] != 'S' && map[i][j] != 'N' && map[i][j] != 'E' && map[i][j] != 'W' && map[i][j] != ' ')
-				print_free_exit(game, "Error : Caractere invalide dans la map !");
+			if (map[i][j] != '1' && map[i][j] != '0' && map[i][j] != 'S'
+				&& map[i][j] != 'N' && map[i][j] != 'E' && map[i][j] != 'W'
+				&& map[i][j] != ' ')
+				print_free_exit(game,
+					"Error : Caractere invalide dans la map !");
 			j++;
 		}
 		i++;

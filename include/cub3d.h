@@ -6,7 +6,7 @@
 /*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 10:02:42 by nadahman          #+#    #+#             */
-/*   Updated: 2025/05/13 13:56:03 by nadahman         ###   ########.fr       */
+/*   Updated: 2025/05/15 12:32:36 by nadahman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,8 +136,8 @@ char			**load_file(char *file_name);
 void			sort_pars(t_game *game);
 void			extract_texture(t_game *game, char *line, char **texture,
 					char *name);
-void			extract_color(t_game *game, char *line, int *r, int *g, int *b,
-					char *name);
+void	extract_color(t_game *game, char *line, int *r, int *g, int *b,
+		char *name);
 void			extract_map(t_game *game);
 int				check_all_condition(t_game *game);
 int				check_is_valid(t_game *game);

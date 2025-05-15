@@ -6,7 +6,7 @@
 /*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 11:05:11 by nadahman          #+#    #+#             */
-/*   Updated: 2025/05/13 12:34:11 by nadahman         ###   ########.fr       */
+/*   Updated: 2025/05/14 10:00:13 by nadahman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,6 @@ int moove_right(t_game *game)
 
 int exit_escape(t_game *game)
 {
-	// mlx_destroy_image(game->mlx.mlx_ptr, game->mlx.win_ptr);
 	free_all(game);
 	exit(0);
 }
