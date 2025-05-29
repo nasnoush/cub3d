@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nas <nas@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 10:02:42 by nadahman          #+#    #+#             */
-/*   Updated: 2025/05/15 12:32:36 by nadahman         ###   ########.fr       */
+/*   Updated: 2025/05/29 22:26:42 by nas              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,7 +132,7 @@ void			init_mlx(t_game *game);
 
 // parsing
 
-char			**load_file(char *file_name);
+char			**load_file(t_game *game, char *file_name);
 void			sort_pars(t_game *game);
 void			extract_texture(t_game *game, char *line, char **texture,
 					char *name);

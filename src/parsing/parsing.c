@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nas <nas@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 14:12:54 by nadahman          #+#    #+#             */
-/*   Updated: 2025/05/15 12:34:04 by nadahman         ###   ########.fr       */
+/*   Updated: 2025/05/29 22:30:30 by nas              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	process_line(char **file, char *line, int row)
 	return (1);
 }
 
-char	**load_file(char *file_name)
+char	**load_file(t_game *game, char *file_name)
 {
 	int		fd;
 	char	**file;
@@ -34,7 +34,7 @@ char	**load_file(char *file_name)
 
 	fd = open(file_name, O_RDONLY);
 	if (fd < 0)
-		return (NULL);
+		print_free_exit(game, "Error : Map non existante !");
 	file = malloc(sizeof(char *) * MAX_LINE);
 	if (file == NULL)
 		return (NULL);
