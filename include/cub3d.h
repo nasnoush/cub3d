@@ -6,7 +6,7 @@
 /*   By: nas <nas@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 10:02:42 by nadahman          #+#    #+#             */
-/*   Updated: 2025/05/29 22:26:42 by nas              ###   ########.fr       */
+/*   Updated: 2025/06/06 14:52:20 by nas              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,13 @@ typedef struct s_color
 	unsigned int floor;
 
 }				t_color;
+
+typedef struct s_rgb 
+{
+    int r;
+    int g;
+    int b;
+} t_rgb;
 
 typedef struct s_mlx
 {
@@ -136,8 +143,9 @@ char			**load_file(t_game *game, char *file_name);
 void			sort_pars(t_game *game);
 void			extract_texture(t_game *game, char *line, char **texture,
 					char *name);
-void	extract_color(t_game *game, char *line, int *r, int *g, int *b,
+void	extract_color(t_game *game, char *line, t_rgb *rgb,
 		char *name);
+void	assign_colors(t_game *game, t_rgb *floor_rgb, t_rgb *ceiling_rgb);
 void			extract_map(t_game *game);
 int				check_all_condition(t_game *game);
 int				check_is_valid(t_game *game);

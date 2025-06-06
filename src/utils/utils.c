@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nas <nas@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 14:14:54 by nas               #+#    #+#             */
-/*   Updated: 2025/05/13 10:57:06 by nadahman         ###   ########.fr       */
+/*   Updated: 2025/06/06 14:52:06 by nas              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,4 +52,18 @@ void	destroy_all(t_game *game)
 		mlx_destroy_display(game->mlx.mlx_ptr);
 		free(game->mlx.mlx_ptr);
 	}
+}
+
+void	assign_colors(t_game *game, t_rgb *floor_rgb, t_rgb *ceiling_rgb)
+{
+	game->color.color_floor_r = floor_rgb->r;
+	game->color.color_floor_g = floor_rgb->g;
+	game->color.color_floor_b = floor_rgb->b;
+	game->color.color_ceiling_r = ceiling_rgb->r;
+	game->color.color_ceiling_g = ceiling_rgb->g;
+	game->color.color_ceiling_b = ceiling_rgb->b;
+	game->color.ceiling = rgb_int(game->color.color_ceiling_r,
+			game->color.color_ceiling_g, game->color.color_ceiling_b);
+	game->color.floor = rgb_int(game->color.color_floor_r,
+			game->color.color_floor_g, game->color.color_floor_b);
 }

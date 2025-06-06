@@ -6,13 +6,13 @@
 /*   By: nas <nas@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 14:12:54 by nadahman          #+#    #+#             */
-/*   Updated: 2025/05/29 22:30:30 by nas              ###   ########.fr       */
+/*   Updated: 2025/06/06 14:53:02 by nas              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-int	process_line(char **file, char *line, int row)
+int process_line(char **file, char *line, int row)
 {
 	file[row] = ft_strdup(line);
 	if (file[row] == NULL || row >= MAX_LINE)
@@ -25,12 +25,12 @@ int	process_line(char **file, char *line, int row)
 	return (1);
 }
 
-char	**load_file(t_game *game, char *file_name)
+char **load_file(t_game *game, char *file_name)
 {
-	int		fd;
-	char	**file;
-	char	*line;
-	int		row;
+	int fd;
+	char **file;
+	char *line;
+	int row;
 
 	fd = open(file_name, O_RDONLY);
 	if (fd < 0)
@@ -52,11 +52,11 @@ char	**load_file(t_game *game, char *file_name)
 	return (file);
 }
 
-void	check_map_end(t_game *game)
+void check_map_end(t_game *game)
 {
-	int		i;
-	int		param;
-	char	**file;
+	int i;
+	int param;
+	char **file;
 
 	file = game->file_content;
 	i = 0;
@@ -66,7 +66,7 @@ void	check_map_end(t_game *game)
 		if (is_param_map(file[i]))
 			param++;
 		else if (param == 6 && (file[i][0] == '1' || file[i][0] == ' '))
-			return ;
+			return;
 		else if (param == 6 && file[i][0] != '\n')
 			print_free_exit(game, "Error : Problemes dans les par de jeu ");
 		i++;
@@ -74,9 +74,9 @@ void	check_map_end(t_game *game)
 	print_free_exit(game, "Error : Problemes dans les parametres de jeu ");
 }
 
-unsigned int	rgb_int(int r, int g, int b)
+unsigned int rgb_int(int r, int g, int b)
 {
-	unsigned int	rgb;
+	unsigned int rgb;
 
 	rgb = r;
 	rgb = (rgb << 8) | g;
@@ -84,9 +84,11 @@ unsigned int	rgb_int(int r, int g, int b)
 	return (rgb);
 }
 
-void	sort_pars(t_game *game)
+void sort_pars(t_game *game)
 {
-	int	i;
+	int i;
+	t_rgb floor_rgb;
+	t_rgb ceiling_rgb;
 
 	i = 0;
 	while (game->file_content[i])
@@ -95,16 +97,11 @@ void	sort_pars(t_game *game)
 		extract_texture(game, game->file_content[i], &game->text_so, "SO");
 		extract_texture(game, game->file_content[i], &game->text_we, "WE");
 		extract_texture(game, game->file_content[i], &game->text_ea, "EA");
-		extract_color(game, game->file_content[i], &game->color.color_floor_r,
-			&game->color.color_floor_g, &game->color.color_floor_b, "F");
-		extract_color(game, game->file_content[i], &game->color.color_ceiling_r,
-			&game->color.color_ceiling_g, &game->color.color_ceiling_b, "C");
+		extract_color(game, game->file_content[i], &floor_rgb, "F");
+		extract_color(game, game->file_content[i], &ceiling_rgb, "C");
 		i++;
 	}
-	game->color.ceiling = rgb_int(game->color.color_ceiling_r,
-			game->color.color_ceiling_g, game->color.color_ceiling_b);
-	game->color.floor = rgb_int(game->color.color_floor_r,
-			game->color.color_floor_g, game->color.color_floor_b);
+	assign_colors(game, &floor_rgb, &ceiling_rgb);
 	extract_map(game);
 	check_map_end(game);
 	check_map_char(game);

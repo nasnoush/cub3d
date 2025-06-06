@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_error.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nas <nas@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 09:57:02 by nadahman          #+#    #+#             */
-/*   Updated: 2025/05/15 11:23:14 by nadahman         ###   ########.fr       */
+/*   Updated: 2025/06/06 14:56:30 by nas              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,7 @@ int	check_if_double(t_game *game)
 	}
 	if (count != 1)
 	{
-		printf("Error : Pas le bon nombre de joueur !\n");
-		return (0);
+		return (printf("Error : Pas le bon nombre de joueur !\n"), 0);
 	}
 	return (1);
 }
