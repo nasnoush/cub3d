@@ -6,7 +6,7 @@
 /*   By: nas <nas@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 10:02:42 by nadahman          #+#    #+#             */
-/*   Updated: 2025/06/06 14:52:20 by nas              ###   ########.fr       */
+/*   Updated: 2025/06/06 15:10:29 by nas              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,6 +145,7 @@ void			extract_texture(t_game *game, char *line, char **texture,
 					char *name);
 void	extract_color(t_game *game, char *line, t_rgb *rgb,
 		char *name);
+unsigned int rgb_int(int r, int g, int b);
 void	assign_colors(t_game *game, t_rgb *floor_rgb, t_rgb *ceiling_rgb);
 void			extract_map(t_game *game);
 int				check_all_condition(t_game *game);

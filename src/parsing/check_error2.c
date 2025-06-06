@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_error2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nas <nas@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 14:13:31 by nas               #+#    #+#             */
-/*   Updated: 2025/05/13 10:26:46 by nadahman         ###   ########.fr       */
+/*   Updated: 2025/06/06 15:17:36 by nas              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	check_tile(char **map, int i, int j)
 	{
 		if (!check_cote(map, i, j))
 		{
-			printf("Error : La carte n'est pas entourée de murs !\n");
+			printf("Error : Mur manquant dans la map !\n");
 			return (0);
 		}
 	}
