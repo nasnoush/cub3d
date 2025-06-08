@@ -6,7 +6,7 @@
 /*   By: nas <nas@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 09:57:42 by nadahman          #+#    #+#             */
-/*   Updated: 2025/06/06 14:44:06 by nas              ###   ########.fr       */
+/*   Updated: 2025/06/08 13:25:54 by nas              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,31 +57,31 @@ int	recup_num(t_game *game, char *line, int *i)
 	return (num);
 }
 
-void extract_color(t_game *game, char *line, t_rgb *rgb, char *name)
+void	extract_color(t_game *game, char *line, t_rgb *rgb, char *name)
 {
-    int i;
+	int	i;
 
-    i = 0;
-    while (line[i] == ' ' || line[i] == '\t')
-        i++;
-    if (ft_strncmp(&line[i], name, ft_strlen(name)) != 0)
-        return ;
-    i += ft_strlen(name);
-    while (line[i] == ' ' || line[i] == '\t')
-        i++;
-    rgb->r = recup_num(game, line, &i);
-    if (line[i++] != ',')
-        print_free_exit(game, "Error : Format de couleur non valide !");
-    rgb->g = recup_num(game, line, &i);
-    if (line[i++] != ',')
-        print_free_exit(game, "Error : Format de couleur non valide !");
-    rgb->b = recup_num(game, line, &i);
-    while (line[i])
-    {
-        if (line[i] != ' ' && line[i] != '\t' && line[i] != '\n')
-            print_free_exit(game, "Error : Format de couleur non valide !");
-        i++;
-    }
+	i = 0;
+	skip_spaces(line, &i);
+	if (ft_strncmp(&line[i], name, ft_strlen(name)) != 0)
+		return ;
+	i += ft_strlen(name);
+	skip_spaces(line, &i);
+	rgb->r = recup_num(game, line, &i);
+	skip_spaces(line, &i);
+	if (line[i++] != ',')
+		print_free_exit(game, "Error : Format de couleur non valide !");
+	skip_spaces(line, &i);
+	rgb->g = recup_num(game, line, &i);
+	skip_spaces(line, &i);
+	if (line[i++] != ',')
+		print_free_exit(game, "Error : Format de couleur non valide !");
+	skip_spaces(line, &i);
+	rgb->b = recup_num(game, line, &i);
+	while (line[i] && (line[i] == ' ' || line[i] == '\t' || line[i] == '\n'))
+		i++;
+	if (line[i])
+		print_free_exit(game, "Error : Format de couleur non valide !");
 }
 
 void	extract_map(t_game *game)

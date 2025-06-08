@@ -10,15 +10,15 @@ SO ./assets/textures/nas2.xpm
 
 WE ./assets/textures/nas3.xpm
 
-C 30,255,10
+C       30     ,    	 255   ,   10  
 
 
-F         0,0,0   
+F         0 ,   0   ,   0    
 
 
 
 
  111111
-1001101
-1N0011 
+ 1001101
+1N00111
 111111

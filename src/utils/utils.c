@@ -6,7 +6,7 @@
 /*   By: nas <nas@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 14:14:54 by nas               #+#    #+#             */
-/*   Updated: 2025/06/06 14:52:06 by nas              ###   ########.fr       */
+/*   Updated: 2025/06/08 13:24:12 by nas              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,4 +66,10 @@ void	assign_colors(t_game *game, t_rgb *floor_rgb, t_rgb *ceiling_rgb)
 			game->color.color_ceiling_g, game->color.color_ceiling_b);
 	game->color.floor = rgb_int(game->color.color_floor_r,
 			game->color.color_floor_g, game->color.color_floor_b);
+}
+
+void	skip_spaces(char *line, int *i)
+{
+	while (line[*i] == ' ' || line[*i] == '\t')
+		(*i)++;
 }

@@ -6,7 +6,7 @@
 /*   By: nas <nas@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 10:02:42 by nadahman          #+#    #+#             */
-/*   Updated: 2025/06/06 15:10:29 by nas              ###   ########.fr       */
+/*   Updated: 2025/06/08 13:24:22 by nas              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -179,6 +179,7 @@ void			load_tile_images(t_game *game);
 // utils
 
 int				count_line(t_game *game);
+void	skip_spaces(char *line, int *i);
 
 // raycasting
 void			raycasting(t_game *game);
