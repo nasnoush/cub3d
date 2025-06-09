@@ -6,7 +6,7 @@
 /*   By: yaoberso <yaoberso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 19:09:24 by nas               #+#    #+#             */
-/*   Updated: 2025/06/09 12:54:30 by yaoberso         ###   ########.fr       */
+/*   Updated: 2025/06/09 14:11:15 by yaoberso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,34 +60,7 @@ void	init_player(t_game *game)
 			{
 				game->player.y = x + 0.5;
 				game->player.x = y + 0.5;
-				if (map[x][y] == 'N')
-				{
-					game->player.dir_x = 0;
-					game->player.dir_y = -1;
-					game->player.plane_x = 0.66;
-					game->player.plane_y = 0;
-				}
-				else if (map[x][y] == 'S')
-				{
-					game->player.dir_x = 0;
-					game->player.dir_y = 1;
-					game->player.plane_x = -0.66;
-					game->player.plane_y = 0;
-				}
-				else if (map[x][y] == 'E')
-				{
-					game->player.dir_x = 1;
-					game->player.dir_y = 0;
-					game->player.plane_x = 0;
-					game->player.plane_y = 0.66;
-				}
-				else if (map[x][y] == 'W')
-				{
-					game->player.dir_x = -1;
-					game->player.dir_y = 0;
-					game->player.plane_x = 0;
-					game->player.plane_y = -0.66;
-				}
+				init_player_pos(map, game, x, y);
 				return ;
 			}
 			y++;
@@ -96,17 +69,8 @@ void	init_player(t_game *game)
 	}
 }
 
-void	init_raycasting(t_game *game, int x)
+void	init_ray2(t_game *game)
 {
-	game->ray.camera_x = 2 * x / (double)WIDTH - 1;
-	game->ray.ray_dir_x = game->player.dir_x + game->player.plane_x
-		* game->ray.camera_x;
-	game->ray.ray_dir_y = game->player.dir_y + game->player.plane_y
-		* game->ray.camera_x;
-	game->ray.map_x = (int)game->player.x;
-	game->ray.map_y = (int)game->player.y;
-	game->ray.delta_dist_x = fabs(1 / game->ray.ray_dir_x);
-	game->ray.delta_dist_y = fabs(1 / game->ray.ray_dir_y);
 	if (game->ray.ray_dir_x < 0)
 	{
 		game->ray.step_x = -1;
@@ -131,4 +95,18 @@ void	init_raycasting(t_game *game, int x)
 		game->ray.side_dist_y = (game->ray.map_y + 1.0 - game->player.y)
 			* game->ray.delta_dist_y;
 	}
+}
+
+void	init_raycasting(t_game *game, int x)
+{
+	game->ray.camera_x = 2 * x / (double)WIDTH - 1;
+	game->ray.ray_dir_x = game->player.dir_x + game->player.plane_x
+		* game->ray.camera_x;
+	game->ray.ray_dir_y = game->player.dir_y + game->player.plane_y
+		* game->ray.camera_x;
+	game->ray.map_x = (int)game->player.x;
+	game->ray.map_y = (int)game->player.y;
+	game->ray.delta_dist_x = fabs(1 / game->ray.ray_dir_x);
+	game->ray.delta_dist_y = fabs(1 / game->ray.ray_dir_y);
+	init_ray2(game);
 }

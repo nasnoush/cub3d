@@ -6,7 +6,7 @@
 /*   By: yaoberso <yaoberso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 13:31:12 by yaoberso          #+#    #+#             */
-/*   Updated: 2025/05/15 13:49:43 by yaoberso         ###   ########.fr       */
+/*   Updated: 2025/06/09 13:51:40 by yaoberso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,20 +49,19 @@ void	draw_tex_line(t_game *game, t_img *tex, int x)
 
 void	draw_tex_pixels(t_game *game, t_img *tex, int x, int tex_x)
 {
-	int		y;
-	int		tex_y;
-	int		color;
-	double	tex_pos;
+	int	y;
+	int	tex_y;
+	int	color;
 
-	tex_pos = (game->draw_params.draw_start - HEIGHT / 2
+	game->tex_pos = (game->draw_params.draw_start - HEIGHT / 2
 			+ game->draw_params.line_height / 2) * game->draw_params.step;
 	y = game->draw_params.draw_start;
 	while (y < game->draw_params.draw_end)
 	{
-		tex_y = (int)tex_pos & (tex->height - 1);
+		tex_y = (int)game->tex_pos & (tex->height - 1);
 		if (tex_y < 0 || tex_y >= tex->height)
 			tex_y = 0;
-		tex_pos += game->draw_params.step;
+		game->tex_pos += game->draw_params.step;
 		if (tex->bpp / 8 * tex_x + tex_y * tex->line_length < tex->height
 			* tex->line_length)
 		{

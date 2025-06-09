@@ -3,134 +3,86 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nas <nas@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: yaoberso <yaoberso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 11:14:23 by yann              #+#    #+#             */
-/*   Updated: 2025/05/10 11:49:01 by nas              ###   ########.fr       */
+/*   Updated: 2025/06/09 14:21:19 by yaoberso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-static char	*read_first_line(int fd, char *text)
+char	*ftg_strlcpy(char *dst, const char *src, size_t dstsize)
 {
-	char	*buffer;
-	int		bytes_read;
+	size_t	i;
 
-	if (text == NULL)
-		text = ftg_calloc(1, 1);
-	if (!text)
-		return (NULL);
-	buffer = malloc((BUFFER_SIZE + 1) * sizeof(char));
-	if (buffer == NULL)
+	i = 0;
+	if (dstsize == 0)
+		return (ftg_strdup(src));
+	while (src[i] != '\0' && i < dstsize - 1)
 	{
-		free(text);
-		return (NULL);
+		dst[i] = src[i];
+		i++;
 	}
-	bytes_read = 1;
-	while (bytes_read > 0)
-	{
-		bytes_read = read(fd, buffer, BUFFER_SIZE);
-		if (bytes_read == -1)
-		{
-			free(text);
-			free(buffer);
-			return (NULL);
-		}
-		buffer[bytes_read] = '\0';
-		text = ftg_strjoin(text, buffer);
-		if (ftg_strchr(text, '\n') != NULL)
-			break ;
-	}
-	free(buffer);
-	return (text);
+	dst[i] = '\0';
+	return (dst);
 }
 
-static char	*get_line(char *text)
+char	*ft_free_stock(char *stock)
 {
-	int		i;
-	char	*str;
-
-	i = 0;
-	if (text[i] == '\0')
-		return (NULL);
-	while ((text[i] != '\0') && (text[i] != '\n'))
-		i++;
-	str = ftg_calloc(i + 2, sizeof(char));
-	if (str == NULL)
-		return (NULL);
-	i = 0;
-	while (text[i] != '\0' && text[i] != '\n')
-	{
-		str[i] = text[i];
-		i++;
-	}
-	if (text[i] == '\n')
-		str[i++] = '\n';
-	return (str);
+	free(stock);
+	stock = NULL;
+	return (stock);
 }
 
-static char	*clean_first_line(char *text)
+static char	*ft_extract_line(char **stock)
 {
+	char	*line;
 	int		i;
-	int		j;
-	char	*str;
+	char	*temp;
 
 	i = 0;
-	while (text[i] != '\0' && text[i] != '\n')
+	if (*stock == NULL || **stock == '\0')
+		return (NULL);
+	while ((*stock)[i] != '\0' && (*stock)[i] != '\n')
 		i++;
-	if (text[i] == '\0')
-	{
-		free(text);
+	line = (char *)malloc (i + 2);
+	if (line == NULL)
 		return (NULL);
-	}
-	i++; // Saute le caractère '\n'
-	str = ftg_calloc(ft_strlen(text) - i + 1, sizeof(char));
-	if (str == NULL)
-	{
-		free(text);
-		return (NULL);
-	}
-	j = 0;
-	while (text[i + j] != '\0')
-	{
-		str[j] = text[i + j];
-		j++;
-	}
-	free(text);
-	return (str);
+	ftg_strlcpy(line, *stock, i + 2);
+	if ((*stock)[i] == '\n')
+		temp = ftg_strdup(*stock + i + 1);
+	else
+		temp = NULL;
+	free(*stock);
+	*stock = temp;
+	return (line);
 }
 
 char	*get_next_line(int fd)
 {
-	char		*output_text;
-	static char	*text = NULL;
+	static char	*stock = NULL;
+	char		buffer[BUFFER_SIZE + 1];
+	char		*line;
+	ssize_t		bytes_lu;
+	char		*new_stock;
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
-		return (NULL);
-	text = read_first_line(fd, text);
-	if (text == NULL)
-		return (NULL);
-	output_text = get_line(text);
-	text = clean_first_line(text);
-	if (!output_text)
+	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
+		return (stock = ft_free_stock(stock));
+	bytes_lu = 1;
+	while (bytes_lu > 0)
 	{
-		free(text);
-		text = NULL;
+		bytes_lu = read(fd, buffer, BUFFER_SIZE);
+		if (bytes_lu < 0)
+			return (stock = ft_free_stock(stock));
+		buffer[bytes_lu] = '\0';
+		new_stock = ftg_strjoin(stock, buffer);
+		stock = new_stock;
+		if (found_line(stock) != -1)
+			break ;
 	}
-	return (output_text);
+	if (bytes_lu < 0 || (bytes_lu == 0 && (stock == NULL || *stock == '\0')))
+		return (stock = ft_free_stock(stock));
+	line = ft_extract_line(&stock);
+	return (line);
 }
-
-// /*#include <stdio.h>
-// #include <fcntl.h>
-// int main()
-// {
-//     int fd;
-
-//     fd = open("test.txt", O_RDONLY);
-//     printf("%s", get_next_line(fd));
-// 	printf("%s", get_next_line(fd));
-// 	printf("%s", get_next_line(fd));
-// 	printf("%s", get_next_line(fd));
-// }
-// */

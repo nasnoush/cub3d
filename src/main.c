@@ -6,7 +6,7 @@
 /*   By: yaoberso <yaoberso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 13:47:20 by nadahman          #+#    #+#             */
-/*   Updated: 2025/06/09 12:54:42 by yaoberso         ###   ########.fr       */
+/*   Updated: 2025/06/09 14:12:52 by yaoberso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,7 @@ int	main(int ac, char **av)
 
 	if (ac != 2 || strcmp(&av[1][ft_strlen(av[1]) - 4], ".cub") != 0)
 	{
-		printf("Error : <map> .cub file is expected");
-		return (1);
+		return (printf("Error : <map> .cub file is expected"), 1);
 	}
 	game = malloc(sizeof(t_game));
 	if (game == NULL)

@@ -3,30 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nas <nas@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: yaoberso <yaoberso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 11:14:29 by yann              #+#    #+#             */
-/*   Updated: 2025/05/10 11:49:18 by nas              ###   ########.fr       */
+/*   Updated: 2025/06/09 14:20:35 by yaoberso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 
-# include <stdlib.h>
-# include <unistd.h>
-# include "../include/cub3d.h"
-
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 42
+#  define BUFFER_SIZE 32
 # endif
 
+# include <stdlib.h>
+# include <string.h>
+# include <unistd.h>
+
+size_t	ftg_strlen(char *str);
+int		found_line(char *str);
+char	*ftg_strjoin(char *s1, char *s2);
 char	*get_next_line(int fd);
-int	found_line(char *str);
-void	free_get_next_line(void);
-int		ftg_strlen(const char *s);
-char	*ftg_strchr(const char *s, int c);
-char	*ftg_strjoin(char *s1, const char *s2);
-void	*ftg_calloc(unsigned int count, unsigned int size);
+char	*ftg_strdup(const char *str);
 
 #endif
