@@ -6,23 +6,22 @@
 /*   By: yaoberso <yaoberso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 10:46:36 by nadahman          #+#    #+#             */
-/*   Updated: 2025/05/13 12:29:13 by yaoberso         ###   ########.fr       */
+/*   Updated: 2025/05/15 13:38:50 by yaoberso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "../include/cub3d.h"
 
-int can_moove(t_game *game, int x, int y)
+int	can_moove(t_game *game, int x, int y)
 {
-	if(game->map[y][x] == '1')
+	if (game->map[y][x] == '1')
 	{
 		return (0);
 	}
 	return (1);
 }
 
-int keycode_mo(int keycode, t_game *game)
+int	keycode_mo(int keycode, t_game *game)
 {
 	if (keycode == KEY_W)
 		moove_up(game);

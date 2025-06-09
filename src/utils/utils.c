@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nas <nas@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: yaoberso <yaoberso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 14:14:54 by nas               #+#    #+#             */
-/*   Updated: 2025/06/08 13:24:12 by nas              ###   ########.fr       */
+/*   Updated: 2025/06/09 12:53:03 by yaoberso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-int count_line(t_game *game)
+int	count_line(t_game *game)
 {
-	int i;
-	char **map;
-	
+	int		i;
+	char	**map;
+
 	map = game->map;
 	i = 0;
 	while (map[i])

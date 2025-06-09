@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yaoberso <yaoberso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 13:20:53 by nadahman          #+#    #+#             */
-/*   Updated: 2025/05/13 10:57:04 by nadahman         ###   ########.fr       */
+/*   Updated: 2025/06/09 12:56:54 by yaoberso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,9 @@
 
 void	free_map(t_game *game)
 {
-	int i;
-	
+	int	i;
+
 	i = 0;
-	
 	if (!game->map)
 		return ;
 	while (game->map[i])
@@ -31,8 +30,8 @@ void	free_map(t_game *game)
 
 void	free_file_content(t_game *game)
 {
-	int i;
-	
+	int	i;
+
 	i = 0;
 	if (!game->file_content)
 		return ;
@@ -50,7 +49,7 @@ void	free_file(char **file)
 	int	i;
 
 	if (!file)
-		return;
+		return ;
 	i = 0;
 	while (file[i])
 	{
@@ -76,11 +75,10 @@ void	free_texture(t_game *game)
 	game->text_no = NULL;
 }
 
-
 void	free_all(t_game *game)
 {
 	if (!game)
-		return;
+		return ;
 	free_map(game);
 	free_file_content(game);
 	free_texture(game);

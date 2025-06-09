@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nas <nas@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: yaoberso <yaoberso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 10:02:42 by nadahman          #+#    #+#             */
-/*   Updated: 2025/06/08 13:24:22 by nas              ###   ########.fr       */
+/*   Updated: 2025/06/09 12:47:53 by yaoberso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,15 @@
 # include <stdlib.h>
 # include <string.h>
 # include <unistd.h>
+
+typedef struct s_draw
+{
+	int draw_start;
+	int draw_end;
+	int line_height;
+	double wall_x;
+	double step;
+}				t_draw;
 
 typedef struct s_color
 {
@@ -121,6 +130,7 @@ typedef struct s_game
 	char		*text_we;
 	char		*text_ea;
 
+	t_draw		draw_params;
 	t_color		color;
 	t_mlx		mlx;
 	t_img		img;
@@ -183,6 +193,9 @@ void	skip_spaces(char *line, int *i);
 
 // raycasting
 void			raycasting(t_game *game);
+void	calculate_draw_params(t_game *game);
+void	draw_tex_line(t_game *game, t_img *tex, int x);
+void	draw_tex_pixels(t_game *game, t_img *tex, int x, int tex_x);
 
 // moove
 int				can_moove(t_game *game, int x, int y);
