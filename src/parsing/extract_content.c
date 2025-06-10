@@ -15,29 +15,30 @@
 void	extract_texture(t_game *game, char *line, char **texture, char *name)
 {
 	int		i;
-	int		len;
-	char	*new_texture;
+	char	*trimmed_path;
+	char	*raw_path;
 
 	i = 0;
 	while (line[i] == ' ' || line[i] == '\t')
 		i++;
 	if (ft_strncmp(&line[i], name, 2) != 0)
 		return ;
-	i = i + 2;
+	i += 2;
 	while (line[i] == ' ' || line[i] == '\t')
 		i++;
-	len = ft_strlen(&line[i]);
-	if (line[i + len - 1] == '\n')
-		len--;
-	new_texture = ft_substr(&line[i], 0, len);
-	if (new_texture == NULL || *new_texture == '\0')
+	raw_path = ft_strdup(&line[i]);
+	if (!raw_path)
+		print_free_exit(game, "Error : Malloc failed");
+	trimmed_path = ft_strtrim(raw_path, " \t\n");
+	free(raw_path);
+	if (!trimmed_path || *trimmed_path == '\0')
 	{
-		free(new_texture);
+		free(trimmed_path);
 		print_free_exit(game, "Error : Texture non valide !");
 	}
-	if (*texture != NULL)
+	if (*texture)
 		free(*texture);
-	*texture = new_texture;
+	*texture = trimmed_path;
 }
 
 int	recup_num(t_game *game, char *line, int *i)

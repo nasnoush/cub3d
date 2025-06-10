@@ -1,0 +1,168 @@
+-----------------------------
+Test de la map: maps/bad/color_invalid_rgb.cub
+Error : Format de couleur non valide !
+
+-----------------------------
+Test de la map: maps/bad/color_missing_ceiling_rgb.cub
+Error : Format de couleur non valide !
+
+-----------------------------
+Test de la map: maps/bad/color_missing.cub
+Error : Format de couleur non valide !
+
+-----------------------------
+Test de la map: maps/bad/color_missing_floor_rgb.cub
+Error : Format de couleur non valide !
+
+-----------------------------
+Test de la map: maps/bad/color_none.cub
+Error : Format de couleur non valide !
+
+-----------------------------
+Test de la map: maps/bad/empty.cub
+Error : Problemes dans les parametres de jeu 
+
+-----------------------------
+Test de la map: maps/bad/file_letter_end.cub
+
+-----------------------------
+Test de la map: maps/bad/filetype_missing
+Error : <map> .cub file is expected
+-----------------------------
+Test de la map: maps/bad/filetype_wrong.buc
+Error : <map> .cub file is expected
+-----------------------------
+Test de la map: maps/bad/forbidden.cub
+
+-----------------------------
+Test de la map: maps/bad/map_first.cub
+Error : Problemes dans les parametres de jeu 
+
+-----------------------------
+Test de la map: maps/bad/map_middle.cub
+Error : Problemes dans les parametres de jeu 
+
+-----------------------------
+Test de la map: maps/bad/map_missing.cub
+Error : Problemes dans les parametres de jeu 
+
+-----------------------------
+Test de la map: maps/bad/map_only.cub
+Error : Problemes dans les parametres de jeu 
+
+-----------------------------
+Test de la map: maps/bad/map_too_small.cub
+Error : Carte invalide !
+
+-----------------------------
+Test de la map: maps/bad/player_multiple.cub
+Error : Pas le bon nombre de joueur !
+
+-----------------------------
+Test de la map: maps/bad/player_none.cub
+Error : Pas le bon nombre de joueur !
+
+-----------------------------
+Test de la map: maps/bad/player_on_edge.cub
+Error : Mur manquant dans la map !
+
+-----------------------------
+Test de la map: maps/bad/textures_dir.cub
+Erreur: Impossible de charger la texture Est: textures/test/
+
+-----------------------------
+Test de la map: maps/bad/textures_duplicates.cub
+Error : Problemes dans les parametres de jeu 
+
+-----------------------------
+Test de la map: maps/bad/textures_forbidden.cub
+Erreur: Impossible de charger la texture Nord: textures/test/forbidden.xpm
+
+-----------------------------
+Test de la map: maps/bad/textures_invalid.cub
+Erreur: Impossible de charger la texture Ouest: textures/test/x
+
+-----------------------------
+Test de la map: maps/bad/textures_missing.cub
+Error : Problemes dans les parametres de jeu 
+
+-----------------------------
+Test de la map: maps/bad/textures_none.cub
+Error : Problemes dans les parametres de jeu 
+
+-----------------------------
+Test de la map: maps/bad/textures_not_xpm.cub
+Erreur: Impossible de charger la texture Nord: textures/test/north
+
+-----------------------------
+Test de la map: maps/bad/wall_hole_east.cub
+Error : Mur manquant dans la map !
+
+-----------------------------
+Test de la map: maps/bad/wall_hole_north.cub
+Error : Mur manquant dans la map !
+
+-----------------------------
+Test de la map: maps/bad/wall_hole_south.cub
+Error : Mur manquant dans la map !
+
+-----------------------------
+Test de la map: maps/bad/wall_hole_west.cub
+Error : Mur manquant dans la map !
+
+-----------------------------
+Test de la map: maps/bad/wall_none.cub
+Error : Problemes dans les par de jeu 
+
+-----------------------------
+Test de la map: maps/good/cheese_maze.cub
+
+-----------------------------
+Test de la map: maps/good/creepy.cub
+
+-----------------------------
+Test de la map: maps/good/dungeon.cub
+
+-----------------------------
+Test de la map: maps/good/library.cub
+
+-----------------------------
+Test de la map: maps/good/matrix.cub
+
+-----------------------------
+Test de la map: maps/good/sad_face.cub
+
+-----------------------------
+Test de la map: maps/good/square_map.cub
+
+-----------------------------
+Test de la map: maps/good/subject_map.cub
+
+-----------------------------
+Test de la map: maps/good/test_map.cub
+
+-----------------------------
+Test de la map: maps/good/test_map_hole.cub
+Error : Mur manquant dans la map !
+
+-----------------------------
+Test de la map: maps/good/test_pos_bottom.cub
+
+-----------------------------
+Test de la map: maps/good/test_pos_left.cub
+
+-----------------------------
+Test de la map: maps/good/test_pos_right.cub
+
+-----------------------------
+Test de la map: maps/good/test_pos_top.cub
+
+-----------------------------
+Test de la map: maps/good/test_textures.cub
+
+-----------------------------
+Test de la map: maps/good/test_whitespace.cub
+
+-----------------------------
+Test de la map: maps/good/works.cub
+

@@ -1,23 +1,28 @@
-NO ./assets/textures/nas2.xpm
-EA ./assets/textures/nas3.xpm
+NO   ./assets/textures/nas2.xpm
+EA     ./assets/textures/nas3.xpm
 
 
 
-SO ./assets/textures/nas2.xpm
+SO      ./assets/textures/nas2.xpm 
 
 
 
 
-WE ./assets/textures/nas3.xpm
+WE          ./assets/textures/nas3.xpm     
 
-C       30     ,    	 255   ,   10  
-
-
-F         0 ,   0   ,   0    
+C       255     ,    	 255   ,   255
 
 
+F         255 ,   255   ,   255    
 
+
+
+1111111
+ 11101
+1N001
 111111
- 1001101
-1N00111
-111111
+
+
+
+
+
